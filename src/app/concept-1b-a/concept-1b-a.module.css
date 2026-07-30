@@ -1,0 +1,133 @@
+.root {
+  --navy: #112035;
+  --paper: #f3f1ea;
+  --muted: #5c6572;
+  --rule: rgba(17, 32, 53, 0.14);
+
+  background: var(--paper);
+  color: var(--navy);
+  font-family: var(--font-plex-sans);
+  min-height: 100vh;
+}
+
+/* ---------- Hero: full-bleed archipelago photograph ---------- */
+
+.heroWrap {
+  position: relative;
+  height: 92vh;
+  min-height: 34rem;
+  overflow: hidden;
+}
+
+.heroArchipelago {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.heroField {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.heroOverlay {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.heroOverlay a,
+.heroOverlay button {
+  pointer-events: auto;
+}
+
+/* ---------- Header — dark navy text, calm bright water behind it ---------- */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem clamp(1.5rem, 5vw, 5rem) 0;
+}
+
+.nav {
+  display: flex;
+  gap: clamp(1.25rem, 2.5vw, 2.5rem);
+  list-style: none;
+  color: var(--navy);
+}
+
+.nav a {
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease;
+  text-shadow: 0 1px 12px rgba(243, 241, 234, 0.6);
+}
+
+.nav a:hover {
+  border-bottom-color: var(--navy);
+}
+
+/* ---------- Hero bottom: minimal caption + scroll cue ---------- */
+
+.heroBottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 clamp(1.5rem, 5vw, 5rem) clamp(2rem, 5vw, 3rem);
+  gap: 1.5rem;
+}
+
+.heroCaption {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+
+.scrollCue {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: var(--navy);
+  border-bottom: 1px solid rgba(17, 32, 53, 0.35);
+  padding-bottom: 0.35rem;
+  transition: border-color 0.15s ease, gap 0.2s ease;
+}
+
+.scrollCue:hover {
+  border-color: var(--navy);
+  gap: 0.9rem;
+}
+
+.scrollCue svg {
+  animation: bob 1.8s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollCue svg {
+    animation: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .heroBottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}

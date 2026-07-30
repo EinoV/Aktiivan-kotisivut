@@ -1,0 +1,26 @@
+/* Same four tokens as the homepage root (design-system.md §1). Declared
+   here rather than in globals.css on purpose: the archived /concept-*
+   routes each carry their own palette, and hoisting these to :root would
+   silently repaint them. */
+
+.shell {
+  --navy: #112035;
+  --paper: #f3f1ea;
+  --muted: #5c6572;
+  --rule: rgba(17, 32, 53, 0.14);
+
+  background: var(--paper);
+  color: var(--navy);
+  font-family: var(--font-plex-sans);
+
+  /* Footer stays at the bottom on short pages without a fixed height. */
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}

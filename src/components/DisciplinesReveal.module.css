@@ -1,0 +1,106 @@
+/* The pinned hero (HeroPinned/HeroPhaseLabel) now delivers these same
+   three discipline names for everyone, so this section is hidden by
+   default — showing it too would just repeat the same content a second
+   time immediately after the hero. It stays real, unconditionally
+   SSR-rendered DOM text either way (no JSX branching, nothing gated
+   behind JS), and becomes the visible fallback under reduced motion,
+   where the pinned hero's own listener never runs and its content stays
+   static (see the reduced-motion block below). */
+.section {
+  position: relative;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 4rem);
+  padding: clamp(5rem, 15vw, 11rem) clamp(1.5rem, 5vw, 5rem);
+  overflow: hidden;
+}
+
+/* Faint echo of the hero's dot field — three columns, one loosely per
+   discipline, at ~6% opacity. Structural texture, not meant to read as
+   a distinct graphic on its own. */
+.dotAxes {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.dotAxis {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--navy) 0,
+    var(--navy) 2px,
+    transparent 2px,
+    transparent 15px
+  );
+  opacity: 0.07;
+}
+
+.kicker {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-plex-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kicker[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.list {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(3rem, 9vw, 6.5rem);
+  list-style: none;
+  width: 100%;
+}
+
+.item {
+  font-family: var(--font-fraunces);
+  font-weight: 480;
+  font-size: clamp(2.25rem, 6.5vw, 4.75rem);
+  line-height: 1.05;
+  color: var(--navy);
+  text-align: center;
+  text-wrap: balance;
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.item[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section {
+    display: flex;
+  }
+
+  .kicker,
+  .item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

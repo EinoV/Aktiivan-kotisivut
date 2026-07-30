@@ -1,0 +1,31 @@
+.header {
+  padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 5rem)
+    clamp(2.5rem, 6vw, 4rem);
+  max-width: 74rem;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--rule);
+}
+
+.eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.title {
+  font-family: var(--font-fraunces);
+  font-weight: 480;
+  font-size: clamp(2.25rem, 6vw, 4rem);
+  line-height: 1.05;
+  text-wrap: balance;
+  margin-bottom: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+.lead {
+  font-size: clamp(1.1rem, 1.6vw, 1.28rem);
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 58ch;
+}

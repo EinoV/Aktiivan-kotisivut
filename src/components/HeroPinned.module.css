@@ -1,0 +1,96 @@
+/* ---------- Pinned scroll section ---------- */
+/* Any ancestor of .heroPinOuter that gains overflow/transform/filter/
+   contain silently breaks the sticky pin below — no console error, the
+   hero just stops pinning. Worth remembering before touching layout
+   further up the tree (currently html/body only set overflow-x: hidden,
+   which is safe). */
+
+.heroPinOuter {
+  position: relative;
+  height: 340vh;
+}
+
+@media (max-width: 640px) {
+  .heroPinOuter {
+    height: 260vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroPinOuter {
+    height: auto;
+  }
+
+  .heroWrap {
+    position: relative;
+  }
+}
+
+/* ---------- Hero: full-bleed, moody archipelago photograph ---------- */
+
+.heroWrap {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh; /* iOS toolbar fix — keep both lines, dvh overrides where supported */
+  min-height: 34rem;
+  overflow: hidden;
+}
+
+.heroArchipelago {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Deepens across the pinned sequence, driven by --hero-scroll (set in
+   HeroScrollFade, which now just receives HeroPinned's own progress).
+   Kept as its own layer rather than reusing HeroArchipelago's built-in
+   overlay so the darkening stays independent of that component's own
+   fixed-opacity prop. */
+.heroScrollDarken {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--navy);
+  opacity: calc(var(--hero-scroll, 0) * 0.3);
+  pointer-events: none;
+}
+
+.heroField {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  /* The formation morph itself is driven entirely inside HeroField's own
+     canvas draw loop (smoothed against its own internal, independent
+     scroll tracking), not CSS: a CSS opacity here would run on
+     HeroPinned's unsmoothed progress and drift out of sync with what's
+     actually being drawn. */
+}
+
+/* Static (not scroll-linked) fade at the very bottom of the photo, ending
+   at the exact colour .heroTransition (in page.module.css) starts at —
+   so the hard edge where the two elements meet lands on two identical
+   flat colours and reads as continuous rather than a visible seam. */
+.heroBottomFade {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: linear-gradient(to bottom, transparent 55%, #0a1420 100%);
+  pointer-events: none;
+}
+
+.heroOverlay {
+  position: relative;
+  z-index: 4;
+  height: 100%;
+  pointer-events: none;
+}
+
+.heroOverlay a,
+.heroOverlay button {
+  pointer-events: auto;
+}
+
+/* The header itself now lives in SiteNav (tone="onDark"), shared with
+   every subpage, so the link list can't drift between them. */

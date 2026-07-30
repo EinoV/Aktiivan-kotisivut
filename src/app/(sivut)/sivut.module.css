@@ -1,0 +1,289 @@
+/* Section patterns shared by all five subpages. Kept in one file rather
+   than duplicated per route so the vertical rhythm and rule weights stay
+   identical across them. Tokens come from layout.module.css's .shell. */
+
+.section {
+  padding: clamp(3rem, 7vw, 5rem) clamp(1.5rem, 5vw, 5rem) 0;
+  max-width: 74rem;
+  margin: 0 auto;
+}
+
+.sectionHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+.h2 {
+  font-family: var(--font-fraunces);
+  font-weight: 480;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+}
+
+.headNote {
+  font-size: 0.9rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.prose {
+  max-width: 58ch;
+  font-size: 1.08rem;
+  line-height: 1.65;
+}
+
+.prose + .prose {
+  margin-top: 1.25rem;
+}
+
+/* ---------- Label/body rows: activities, benefits, board ---------- */
+
+.rows {
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 16rem) minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2.5rem);
+  align-items: baseline;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.rowLabel {
+  font-family: var(--font-fraunces);
+  font-weight: 480;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+}
+
+.rowBody {
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 56ch;
+}
+
+/* ---------- Numbers strip ---------- */
+
+.numbers {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: clamp(1.5rem, 4vw, 3rem);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: clamp(2rem, 4vw, 2.75rem) 0;
+}
+
+.numberValue {
+  display: block;
+  font-family: var(--font-fraunces);
+  font-weight: 480;
+  font-size: clamp(1.9rem, 3.5vw, 2.6rem);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.numberLabel {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- Jobs table ---------- */
+
+.jobList {
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.jobRow {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 0.8fr)
+    minmax(0, 0.8fr) auto;
+  gap: 1.25rem;
+  align-items: baseline;
+  padding: 1.15rem 0.75rem;
+  margin: 0 -0.75rem;
+  border-bottom: 1px solid var(--rule);
+  border-radius: 2px;
+  transition: background-color 0.15s ease;
+}
+
+.jobRow:hover {
+  background-color: rgba(17, 32, 53, 0.045);
+}
+
+.jobRole {
+  font-size: 1.08rem;
+  font-weight: 500;
+}
+
+.jobMeta {
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.jobDeadline {
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ---------- Partner tiers ---------- */
+
+.tier {
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: minmax(0, 12rem) minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: baseline;
+}
+
+.tier:last-of-type {
+  border-bottom: 1px solid var(--rule);
+}
+
+.tierLabel {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.tierNames {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  font-size: 1.05rem;
+}
+
+.tier:first-of-type .tierNames {
+  font-family: var(--font-fraunces);
+  font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+}
+
+/* ---------- Board ---------- */
+
+.boardRow {
+  display: grid;
+  grid-template-columns: minmax(0, 14rem) minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: clamp(1rem, 3vw, 2.5rem);
+  align-items: baseline;
+  padding: clamp(1.15rem, 2.2vw, 1.5rem) 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.boardRole {
+  font-family: var(--font-fraunces);
+  font-weight: 480;
+  font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+}
+
+.boardName {
+  font-size: 1rem;
+}
+
+.boardEmail {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  border-bottom: 1px solid transparent;
+  width: fit-content;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.boardEmail:hover {
+  color: var(--navy);
+  border-bottom-color: var(--navy);
+}
+
+.boardRemit {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+/* ---------- Contact ---------- */
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: clamp(1.5rem, 4vw, 3rem);
+  border-top: 1px solid var(--rule);
+  padding-top: clamp(2rem, 4vw, 2.5rem);
+}
+
+.contactLabel {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+}
+
+.contactValue {
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  line-height: 1.5;
+}
+
+.contactValue a {
+  border-bottom: 1px solid var(--rule);
+  transition: border-color 0.15s ease;
+}
+
+.contactValue a:hover {
+  border-bottom-color: var(--navy);
+}
+
+/* ---------- Inline call-to-action line ---------- */
+
+.cta {
+  margin-top: clamp(2rem, 5vw, 3rem);
+  padding-top: clamp(1.5rem, 3vw, 2rem);
+  border-top: 1px solid var(--rule);
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 58ch;
+}
+
+.cta a {
+  color: var(--navy);
+  border-bottom: 1px solid var(--rule);
+  transition: border-color 0.15s ease;
+}
+
+.cta a:hover {
+  border-bottom-color: var(--navy);
+}
+
+@media (max-width: 760px) {
+  .row,
+  .boardRow,
+  .tier {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .jobRow {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  .jobDeadline {
+    text-align: left;
+  }
+}

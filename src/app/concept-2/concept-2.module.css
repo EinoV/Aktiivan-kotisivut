@@ -1,0 +1,317 @@
+.root {
+  --navy: #112035;
+  --navy-light: #1c3151;
+  --paper: #f3f1ea;
+  --white: #fdfcf9;
+  --line-on-navy: rgba(253, 252, 249, 0.16);
+  --line-on-paper: rgba(17, 32, 53, 0.14);
+  --muted-on-paper: #5c6572;
+  --muted-on-navy: rgba(253, 252, 249, 0.62);
+
+  background: var(--paper);
+  color: var(--navy);
+  font-family: var(--font-newsreader-italic), serif;
+  min-height: 100vh;
+}
+
+/* ---------- Top bar ---------- */
+
+.topbar {
+  background: var(--navy);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.nav {
+  display: flex;
+  gap: clamp(1.25rem, 2.2vw, 2.25rem);
+  list-style: none;
+  font-family: var(--font-archivo);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.nav a {
+  opacity: 0.85;
+}
+
+.nav a:hover {
+  opacity: 1;
+}
+
+/* ---------- Hero split ---------- */
+
+.heroSplit {
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  min-height: 84vh;
+}
+
+.heroLeft {
+  background: var(--navy);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 4.5rem);
+}
+
+.headline {
+  font-family: var(--font-archivo);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 4.6vw, 4.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  max-width: 16ch;
+}
+
+.caption {
+  font-family: var(--font-newsreader-italic);
+  font-style: italic;
+  font-size: clamp(1.15rem, 1.5vw, 1.4rem);
+  color: var(--muted-on-navy);
+  margin-top: 1.75rem;
+  max-width: 34ch;
+}
+
+.heroRight {
+  min-height: 100%;
+}
+
+/* ---------- Intro ---------- */
+
+.intro {
+  padding: clamp(3rem, 7vw, 5.5rem) clamp(1.5rem, 4vw, 3.5rem);
+  display: grid;
+  grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  max-width: 78rem;
+}
+
+.introEyebrow {
+  font-family: var(--font-archivo);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-on-paper);
+}
+
+.introBody {
+  font-family: system-ui, sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.65;
+  max-width: 58ch;
+}
+
+/* ---------- Filmstrip ---------- */
+
+.filmstrip {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0 clamp(1.5rem, 4vw, 3.5rem);
+  margin-bottom: clamp(3.5rem, 7vw, 6rem);
+  height: clamp(11rem, 22vw, 16rem);
+}
+
+.filmstrip > * {
+  height: 100%;
+}
+
+.filmstrip > *:nth-child(1) { flex: 1.3; }
+.filmstrip > *:nth-child(2) { flex: 0.8; }
+.filmstrip > *:nth-child(3) { flex: 1.6; }
+.filmstrip > *:nth-child(4) { flex: 1; }
+
+/* ---------- Audiences (unequal columns) ---------- */
+
+.audiences {
+  padding: 0 clamp(1.5rem, 4vw, 3.5rem);
+  margin-bottom: clamp(4rem, 8vw, 6.5rem);
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 0.85fr;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  max-width: 78rem;
+}
+
+.audienceCol:nth-child(2) {
+  margin-top: clamp(1.5rem, 4vw, 3rem);
+}
+
+.audienceCol:nth-child(3) {
+  margin-top: clamp(3rem, 7vw, 5rem);
+}
+
+.audiencePhoto {
+  aspect-ratio: 4 / 3;
+  margin-bottom: 1.25rem;
+}
+
+.audienceCol h3 {
+  font-family: var(--font-archivo);
+  font-weight: 700;
+  font-size: 1.35rem;
+  margin-bottom: 0.6rem;
+}
+
+.audienceCol p {
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--muted-on-paper);
+}
+
+/* ---------- Navy block: jobs + partners ---------- */
+
+.navyBlock {
+  background: var(--navy);
+  color: var(--white);
+  padding: clamp(3rem, 7vw, 5.5rem) clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.navyInner {
+  max-width: 78rem;
+  margin: 0 auto;
+}
+
+.sectionHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.sectionHead h2 {
+  font-family: var(--font-archivo);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+}
+
+.sectionHead span {
+  font-family: var(--font-newsreader-italic);
+  font-style: italic;
+  color: var(--muted-on-navy);
+  white-space: nowrap;
+}
+
+.ledger {
+  list-style: none;
+  border-top: 1px solid var(--line-on-navy);
+}
+
+.ledgerRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 0.8fr) minmax(0, 0.7fr) auto;
+  gap: 1.25rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--line-on-navy);
+  align-items: baseline;
+  font-family: system-ui, sans-serif;
+}
+
+.ledgerRow .role {
+  font-family: var(--font-archivo);
+  font-weight: 500;
+  font-size: 1.02rem;
+}
+
+.ledgerRow .muted {
+  color: var(--muted-on-navy);
+  font-size: 0.92rem;
+}
+
+.ledgerRow .deadline {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.88rem;
+  text-align: right;
+  white-space: nowrap;
+  color: var(--muted-on-navy);
+}
+
+.partnersSection {
+  margin-top: clamp(3.5rem, 7vw, 5rem);
+}
+
+.partnerGroup {
+  margin-bottom: 1.75rem;
+}
+
+.partnerGroupLabel {
+  font-family: var(--font-archivo);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-on-navy);
+  margin-bottom: 0.75rem;
+}
+
+.partnerGroupNames {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 2.25rem;
+  font-family: var(--font-archivo);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  padding: clamp(2rem, 5vw, 3rem) clamp(1.5rem, 4vw, 3.5rem) clamp(2.5rem, 5vw, 4rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-family: system-ui, sans-serif;
+}
+
+.footerCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: var(--muted-on-paper);
+}
+
+.footerNote {
+  width: 100%;
+  font-size: 0.75rem;
+  color: var(--muted-on-paper);
+  opacity: 0.7;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line-on-paper);
+  margin-top: 1rem;
+}
+
+@media (max-width: 860px) {
+  .heroSplit {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .heroRight {
+    aspect-ratio: 4 / 3;
+  }
+  .intro,
+  .audiences {
+    grid-template-columns: 1fr;
+  }
+  .audienceCol:nth-child(2),
+  .audienceCol:nth-child(3) {
+    margin-top: 0;
+  }
+  .ledgerRow {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+  .ledgerRow .deadline {
+    text-align: left;
+  }
+}
