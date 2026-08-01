@@ -8,6 +8,36 @@
   margin: 0 auto;
 }
 
+/* Editorial two-column section. The whole subsite used to align every
+   heading, row label and paragraph to one identical left edge, which is
+   what made five different pages read as one repeating template — and
+   with the measure capped near 58ch, the right half of a desktop
+   viewport sat empty for most of the scroll. This gives a second left
+   edge: the heading holds in the margin while its content scrolls past.
+   Collapses to one column at the 640px threshold (design-system §4). */
+.gridSection {
+  padding: clamp(3rem, 7vw, 5rem) clamp(1.5rem, 5vw, 5rem) 0;
+  max-width: 74rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+}
+
+.gridAside {
+  position: sticky;
+  top: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.asideNote {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
 .sectionHead {
   display: flex;
   align-items: baseline;
@@ -20,6 +50,7 @@
   font-family: var(--font-fraunces);
   font-weight: 480;
   font-size: clamp(1.75rem, 3vw, 2.25rem);
+  text-wrap: balance;
 }
 
 .headNote {
@@ -38,6 +69,21 @@
   margin-top: 1.25rem;
 }
 
+/* Links inside running copy. globals.css strips underlines site-wide,
+   and without this rule body links inherited --muted and were literally
+   indistinguishable from the text around them (WCAG 1.4.1). */
+.prose a,
+.rowBody a {
+  color: var(--navy);
+  border-bottom: 1px solid var(--rule);
+  transition: border-color 0.15s ease;
+}
+
+.prose a:hover,
+.rowBody a:hover {
+  border-bottom-color: var(--navy);
+}
+
 /* ---------- Label/body rows: activities, benefits, board ---------- */
 
 .rows {
@@ -52,6 +98,12 @@
   align-items: baseline;
   padding: clamp(1.25rem, 2.5vw, 1.75rem) 0;
   border-bottom: 1px solid var(--rule);
+}
+
+/* Inside a .gridSection the label column is already the aside, so rows
+   run as a single column of stacked label + body. */
+.gridSection .row {
+  grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
 }
 
 .rowLabel {
@@ -104,22 +156,33 @@
   border-top: 1px solid var(--rule);
 }
 
+/* Real column headers. These five columns used to be five bare <span>s
+   with no header row at all, so the meaning of each was inferred from
+   position — and not available to a screen reader in any form. */
+.jobHead {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 0.8fr)
+    minmax(0, 0.9fr) auto;
+  gap: 1.25rem;
+  padding: 0 0.75rem 0.6rem;
+  margin: 0 -0.75rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
 .jobRow {
   display: grid;
   grid-template-columns:
     minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 0.8fr)
-    minmax(0, 0.8fr) auto;
+    minmax(0, 0.9fr) auto;
   gap: 1.25rem;
   align-items: baseline;
   padding: 1.15rem 0.75rem;
   margin: 0 -0.75rem;
   border-bottom: 1px solid var(--rule);
-  border-radius: 2px;
-  transition: background-color 0.15s ease;
-}
-
-.jobRow:hover {
-  background-color: rgba(17, 32, 53, 0.045);
 }
 
 .jobRole {
@@ -139,10 +202,16 @@
   white-space: nowrap;
 }
 
+/* Shown only in the collapsed single-column layout, where column
+   position no longer carries the meaning the header row gave it. */
+.jobInlineLabel {
+  display: none;
+}
+
 /* ---------- Partner tiers ---------- */
 
 .tier {
-  padding: 1.25rem 0;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) 0;
   border-top: 1px solid var(--rule);
   display: grid;
   grid-template-columns: minmax(0, 12rem) minmax(0, 1fr);
@@ -168,9 +237,14 @@
   font-size: 1.05rem;
 }
 
-.tier:first-of-type .tierNames {
+/* Explicit class, NOT `.tier:first-of-type`. That selector counts
+   elements rather than classes, so it matched the section-head div and
+   the top tier silently rendered identically to the event tier — the
+   partner page's entire hierarchy was missing without any visible
+   error. Never reintroduce a positional selector here. */
+.tierPrimary .tierNames {
   font-family: var(--font-fraunces);
-  font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
 }
 
 /* ---------- Board ---------- */
@@ -248,6 +322,37 @@
   border-bottom-color: var(--navy);
 }
 
+/* ---------- Actions ---------- */
+
+/* The system had no button at all — the only "call to action" was a grey
+   paragraph. design-system §2 assigns buttons to Plex Sans; §6 and §8
+   forbid hover-lift and shadow, so this swaps fill only. */
+.action {
+  display: inline-block;
+  font-family: var(--font-plex-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  padding: 0.85rem 1.6rem;
+  border: 1px solid var(--navy);
+  color: var(--navy);
+  background: transparent;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.action:hover {
+  background: var(--navy);
+  color: var(--paper);
+}
+
+.actionRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2rem);
+  margin-top: clamp(2rem, 5vw, 3rem);
+}
+
 /* ---------- Inline call-to-action line ---------- */
 
 .cta {
@@ -270,12 +375,82 @@
   border-bottom-color: var(--navy);
 }
 
-@media (max-width: 760px) {
+/* ---------- Inverted band ---------- */
+
+/* Exactly one of these exists on the whole subsite (the partner ask on
+   /kumppanit). Without photography there is otherwise no tonal contrast
+   anywhere — every pixel is navy on paper. §1 already defines --paper as
+   "text on dark backgrounds", so this stays inside the token system, but
+   it IS a deliberate exception to §4's "hairlines instead of
+   background-colour blocking". Keep it to one instance: repeated, it
+   becomes the colour-blocking the system rules out. */
+.invertBand {
+  margin-top: clamp(4rem, 8vw, 7rem);
+  padding: clamp(3rem, 7vw, 5rem) 0;
+  background: var(--navy);
+  color: var(--paper);
+}
+
+.invertInner {
+  max-width: 74rem;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 5rem);
+}
+
+.invertTitle {
+  font-family: var(--font-fraunces);
+  font-weight: 480;
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+  text-wrap: balance;
+  max-width: 20ch;
+}
+
+.invertBody {
+  margin-top: 1.1rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 56ch;
+  /* A tint of --paper rather than --muted: --muted is specified for
+     secondary text on light backgrounds and has almost no contrast
+     against navy. */
+  color: rgba(243, 241, 234, 0.76);
+}
+
+.actionInverse {
+  composes: action;
+  border-color: var(--paper);
+  color: var(--paper);
+}
+
+.actionInverse:hover {
+  background: var(--paper);
+  color: var(--navy);
+}
+
+/* Single mobile threshold, per design-system §4. Previously this file
+   broke at 760px while SiteNav broke at 720px. */
+@media (max-width: 640px) {
+  .gridSection {
+    grid-template-columns: 1fr;
+    gap: clamp(1rem, 4vw, 1.5rem);
+  }
+
+  .gridAside {
+    position: static;
+  }
+
   .row,
+  .gridSection .row,
   .boardRow,
   .tier {
     grid-template-columns: 1fr;
     gap: 0.5rem;
+  }
+
+  /* The header row's column positions no longer apply once rows stack,
+     so swap it for per-value inline labels. */
+  .jobHead {
+    display: none;
   }
 
   .jobRow {
@@ -285,5 +460,10 @@
 
   .jobDeadline {
     text-align: left;
+  }
+
+  .jobInlineLabel {
+    display: inline;
+    color: var(--muted);
   }
 }

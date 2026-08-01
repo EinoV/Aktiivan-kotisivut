@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Aktiiva ry — etusivukonseptit",
+  title: "Aktiiva ry",
   description:
-    "Viisi genuinely erilaista etusivukonseptia Aktiiva ry:lle, Turun kauppakorkeakoulun laskentatoimen, rahoituksen ja yritysjuridiikan ainejärjestölle.",
+    "Aktiiva ry on Turun kauppakorkeakoulun laskentatoimen, rahoituksen ja yritysjuridiikan opiskelijoiden ainejärjestö.",
 };
 
 export default function RootLayout({

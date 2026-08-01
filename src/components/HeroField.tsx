@@ -85,6 +85,7 @@ export function HeroField({
   theme,
   showDataPath = false,
   showProximityLines = false,
+  interactive = true,
   wrapperRef,
 }: {
   className?: string;
@@ -93,6 +94,15 @@ export function HeroField({
   showDataPath?: boolean;
   /** Thin lines between a small curated set of adjacent A-dots, only while the cursor is near both. */
   showProximityLines?: boolean;
+  /**
+   * Cursor repel/brighten on hover plus the click ripple. Turn this OFF
+   * anywhere the dots morph (the pinned hero): both effects measure the
+   * cursor's distance from each dot's *original* A position, so once a
+   * formation has taken over, dots react from where the A used to be and
+   * the whole thing reads as broken. It's correct — and worth keeping —
+   * only where the dots stay put, i.e. the archived concept pages.
+   */
+  interactive?: boolean;
   /**
    * The pinned scroll section's own tall wrapper (see HeroPinned) — its
    * rect is what pinProgress() measures. Omit on routes that don't sit
@@ -496,9 +506,11 @@ export function HeroField({
     ro.observe(container);
     resize();
 
-    container.addEventListener("pointermove", handlePointerMove);
-    container.addEventListener("pointerleave", handlePointerLeave);
-    container.addEventListener("pointerdown", handlePointerDown);
+    if (interactive) {
+      container.addEventListener("pointermove", handlePointerMove);
+      container.addEventListener("pointerleave", handlePointerLeave);
+      container.addEventListener("pointerdown", handlePointerDown);
+    }
     if (!prefersReduced && wrapperRef) {
       window.addEventListener("scroll", handleScroll, { passive: true });
     }
@@ -517,9 +529,9 @@ export function HeroField({
       container.removeEventListener("pointerdown", handlePointerDown);
       window.removeEventListener("scroll", handleScroll);
     };
-    // theme/showDataPath/showProximityLines/wrapperRef are read once to
-    // seed the canvas system on mount; they aren't meant to change during
-    // this component's lifetime for our usage.
+    // theme/showDataPath/showProximityLines/interactive/wrapperRef are
+    // read once to seed the canvas system on mount; they aren't meant to
+    // change during this component's lifetime for our usage.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

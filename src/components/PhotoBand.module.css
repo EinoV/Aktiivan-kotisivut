@@ -1,0 +1,36 @@
+.band {
+  margin-top: clamp(3rem, 7vw, 5rem);
+}
+
+/* Full-bleed: the surrounding sections are capped at 74rem, so letting
+   the photograph run edge to edge is what makes it read as a break in
+   the page rather than as another boxed element. */
+.frame {
+  position: relative;
+  width: 100%;
+  /* Matches the 16:7 crop the images are baked at, so no letterboxing
+     and no unexpected cropping at any width. */
+  aspect-ratio: 16 / 7;
+  overflow: hidden;
+  background: var(--navy);
+}
+
+.image {
+  object-fit: cover;
+}
+
+.caption {
+  max-width: 74rem;
+  margin: 0.85rem auto 0;
+  padding: 0 clamp(1.5rem, 5vw, 5rem);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+@media (max-width: 640px) {
+  /* A 16:7 strip is too thin to read anything on a phone. */
+  .frame {
+    aspect-ratio: 3 / 2;
+  }
+}

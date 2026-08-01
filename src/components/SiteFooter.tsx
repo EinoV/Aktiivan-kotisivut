@@ -12,12 +12,26 @@ import styles from "./SiteFooter.module.css";
  */
 export function SiteFooter({ note }: { note?: ReactNode }) {
   return (
-    <footer id="yhteystiedot" className={styles.footer}>
+    // Not id="yhteystiedot": that collided with the real /yhteystiedot
+    // route, so on that page the anchor and the route shared a name.
+    <footer id="sivun-alaosa" className={styles.footer}>
       <AktiivaLogo variant="mark-navy" height={44} />
       <div className={styles.col}>
         <a href={`mailto:${contact.email}`}>{contact.email}</a>
-        <span>{contact.instagram}</span>
-        <span>{contact.linkedin}</span>
+        <a
+          href={contact.instagramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {contact.instagram}
+        </a>
+        <a
+          href={contact.linkedinUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn
+        </a>
       </div>
       <div className={styles.col}>
         <span>{orgFacts.name}</span>

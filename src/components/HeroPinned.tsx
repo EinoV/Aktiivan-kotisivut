@@ -64,7 +64,13 @@ export function HeroPinned() {
         <HeroField
           className={styles.heroField}
           showDataPath
-          showProximityLines
+          /* No cursor interaction here: the dots morph through the three
+             formations, and hover/ripple both measure from each dot's
+             original A position, so they react from the wrong place once
+             a formation has taken over. Proximity lines go with it —
+             they only ever draw while the cursor is near, so without
+             hover they'd be dead code. */
+          interactive={false}
           wrapperRef={wrapperRef}
           theme={{
             aColor: "232, 236, 240",

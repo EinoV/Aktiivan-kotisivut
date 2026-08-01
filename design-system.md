@@ -280,3 +280,94 @@ process — still binding for every future page:
 - No text below a comfortable reading size for its role.
 - No stock-photo-style imagery — real, specific, licensed, and credited.
 - No solid navigation bar unless a scrim genuinely cannot solve contrast.
+
+There is exactly one sanctioned exception to the "no background-colour
+blocking" half of §4 — see the inverted band in §9.
+
+## 9. Subpage patterns
+
+The five content routes (`/aktiiva`, `/tyopaikat`, `/kumppanit`,
+`/hallitus`, `/yhteystiedot`) live in the `(sivut)` route group and share
+`src/app/(sivut)/sivut.module.css`. Four patterns carry them, and they
+exist because the first version of these pages had none of them: every
+page was `PageHeader` + a hairline-ruled list, aligned to one identical
+left edge, so five different pages read as one repeating template.
+
+**The two-column section** (`.gridSection` + `.gridAside`). A ~14rem
+heading column that is `position: sticky` on desktop, and the content
+beside it. This is the fix for the single-left-edge problem: it creates a
+second left edge and fills the right half of the viewport, which the
+capped ~58ch measure otherwise leaves empty. Collapses to one column at
+640px, where the aside also stops being sticky. Use it for prose and
+label/body rows; keep `.section` (full width) for the jobs and board
+tables, where column alignment carries meaning.
+
+**The dot motif** (`src/components/DotMark.tsx`). A static SVG built from
+the *same* geometry the hero animates — `A_MASK_CELLS` plus
+`getLedgerGridCells` / `getGrowthBarsCells` / `getContractSealCells` from
+`aRegion.ts`. One per page, chosen for meaning (A / bars / ledger /
+contract-and-seal), sitting in the right half of `PageHeader` at 10%
+navy. It is SVG and a server component on purpose: no rAF, no client
+bundle, no reduced-motion branch, and it ships inside the HTML. It is
+`aria-hidden` and hidden entirely below 640px — it is texture, never
+information. If it ever reads as an illustration competing with the
+title, the fill is too strong.
+
+This motif is the subpages' whole differentiation budget. §3's
+photography clause is the usual lever, but the client chose no
+photography for these pages, so the brand's own visual language does the
+work instead — which is also why the subpages now read as the same site
+as the hero rather than as a separate template.
+
+**Buttons** (`.action`, `.actionInverse`). The system had no button at
+all before this; the only call to action was a grey paragraph. Plex Sans
+per §2, 1px `--navy` border, no radius beyond the existing 2px idiom, and
+**fill swap only** on hover — §6 and §8 forbid lift and shadow.
+
+**The inverted band** (`.invertBand`). Exactly one exists on the whole
+subsite: the partner ask on `/kumppanit`. Without photography the
+subpages have no tonal contrast whatsoever — every pixel is navy on
+paper — and §1 already defines `--paper` as "text on dark backgrounds",
+so an inverted surface is inside the token system. It is nonetheless a
+deliberate exception to §4's "hairline borders… instead of
+background-colour blocking", and it stays an accent only while it stays
+singular. Do not add a second one; repeated, it becomes exactly the
+colour-blocking §4 rules out. Body copy inside it uses a tint of
+`--paper`, not `--muted` — `--muted` is specified for light backgrounds
+and nearly vanishes on navy.
+
+**Photography on the subpages** (`PhotoBand`, `NewsList`). Full-bleed
+graded photographs of the Turku School of Economics and of Turku itself,
+sourced from Wikimedia Commons under CC BY-SA and credited in the
+subpage footer — §8 requires "real, specific, licensed, and credited",
+and a generic office stock photo would fail all four words. The grading
+follows §3 with the darkening steps backed off (desaturation and the
+navy shadow tint at full strength, brightness left alone, the final
+overlay at ~8% rather than 27%): §3's recipe assumes off-white text sits
+*on* the photo, which is true in the hero and false here, and §3 itself
+sanctions backing step 6 off. The recipe is reproducible —
+`scripts/grade-photos.py`, run against the unmodified Commons originals;
+the baked files in `public/photos/` are what ships, never a live CSS
+filter.
+Two bands cut from the same source use a zoom-and-offset pre-crop so
+they read as different photographs rather than the same view twice.
+
+**The announcement grid** (`NewsList`, "Ajankohtaista"). §8 rules out
+"generic repeated card grids" and this is a grid of image-topped items —
+a deliberate exception, made because the client asked for the reference
+association sites' structure by name after seeing the alternative. It is
+held as far from a generic card as the pattern allows: no border box, no
+radius, no shadow, no hover-lift, no "read more" chrome. A hairline above
+each item and nothing else, exactly like every other list on the
+subsite. If it ever grows card chrome, it has drifted from the system and
+should be pulled back.
+
+**Two traps already sprung here, worth not repeating.** First, never
+select these patterns positionally: `.tier:first-of-type` counted
+*elements*, matched the section-head div rather than the first tier, and
+the partner page's entire hierarchy silently failed to render with no
+error anywhere. Use an explicit class (`.tierPrimary`). Second,
+`globals.css` strips underlines site-wide, so any new context containing
+running copy needs its own link affordance — body links inside `.rowBody`
+inherited `--muted` and were literally indistinguishable from the text
+around them (WCAG 1.4.1). `.prose a` / `.rowBody a` now cover it.

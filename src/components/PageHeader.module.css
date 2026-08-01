@@ -4,6 +4,25 @@
   max-width: 74rem;
   margin: 0 auto;
   border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 15rem);
+  gap: clamp(1.5rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.text {
+  min-width: 0;
+}
+
+.markSlot {
+  /* The motif is texture behind the title band, not an illustration to
+     be read — it stays out of the tab order and off the a11y tree via
+     DotMark's own aria-hidden. */
+  height: clamp(8rem, 16vw, 12rem);
+  align-self: center;
+  justify-self: end;
+  width: 100%;
+  pointer-events: none;
 }
 
 .eyebrow {
@@ -28,4 +47,16 @@
   line-height: 1.6;
   color: var(--muted);
   max-width: 58ch;
+}
+
+@media (max-width: 640px) {
+  .header {
+    grid-template-columns: 1fr;
+  }
+
+  /* On a phone the motif would push the lead below the fold for no
+     informational gain, so it drops out entirely rather than shrinking. */
+  .markSlot {
+    display: none;
+  }
 }

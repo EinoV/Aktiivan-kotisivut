@@ -106,10 +106,16 @@ export const partners: Partner[] = [
   { name: "Tilitoimisto", tier: "Tapahtumakumppani" },
 ];
 
+// The display strings and the URLs are separate fields rather than one
+// object per channel: the archived /concept-* pages render `instagram`
+// and `linkedin` directly as text, and reshaping them would break those
+// for no benefit. Only the live site links them.
 export const contact = {
   email: "hallitus@aktiivary.fi",
-  instagram: "@aktiivary",
+  instagram: "@aktiiva",
+  instagramUrl: "https://www.instagram.com/aktiiva/",
   linkedin: "Aktiiva ry",
+  linkedinUrl: "https://www.linkedin.com/company/aktiiva-ry/",
   address: "Rehtorinpellonkatu 3, 20500 Turku",
 };
 
@@ -193,6 +199,88 @@ export const orgNumbers = [
   { value: "n. 450", label: "Jäsentä" },
   { value: "3", label: "Opintosuuntaa" },
   { value: "n. 40", label: "Tapahtumaa vuodessa" },
+];
+
+export type NewsItem = {
+  date: string;
+  isoDate: string;
+  title: string;
+  excerpt: string;
+  image: string;
+  imageAlt: string;
+};
+
+// Placeholder announcements — invented, not real events. The dates are
+// deliberately in the near past/future so the list never looks abandoned
+// in a demo; swap for real items before launch.
+export const news: NewsItem[] = [
+  {
+    date: "12.8.2026",
+    isoDate: "2026-08-12",
+    title: "Syksyn excursiokierros aukeaa haettavaksi",
+    excerpt:
+      "Kolme vierailua tilintarkastukseen ja yritysrahoitukseen, sekä ensimmäistä kertaa kokonainen päivä asianajotoimistossa. Paikat täytetään ilmoittautumisjärjestyksessä.",
+    image: "/photos/tse-building-card.jpg",
+    imageAlt: "Turun kauppakorkeakoulun rakennus.",
+  },
+  {
+    date: "28.7.2026",
+    isoDate: "2026-07-28",
+    title: "Fuksien tuutorointi käynnistyy elokuussa",
+    excerpt:
+      "Uudet opiskelijat saavat oman tuutoriryhmän heti orientaatioviikolla. Tuutorit ovat toisen ja kolmannen vuoden aktiivalaisia.",
+    image: "/photos/tse-entrance-card.jpg",
+    imageAlt: "Turun kauppakorkeakoulun pääsisäänkäynti.",
+  },
+  {
+    date: "3.7.2026",
+    isoDate: "2026-07-03",
+    title: "Vuosijuhlat järjestetään marraskuussa",
+    excerpt:
+      "Aktiivan vuosijuhlat kokoavat jäsenet, alumnit ja kumppanit saman pöydän ääreen. Ilmoittautuminen avataan syyskuussa.",
+    image: "/photos/turku-aerial-card.jpg",
+    imageAlt: "Ilmakuva Turun keskustasta ja Aurajoesta.",
+  },
+];
+
+// Study-path information, mirroring the "what you can study" block the
+// reference association sites lead with.
+export const studyPaths = [
+  {
+    name: "Laskentatoimi",
+    body: "Tilinpäätös, tilintarkastus ja johdon laskentatoimi. Polku vie tyypillisesti Big Four -yhteisöihin, sisäiseen tarkastukseen tai yritysten talousjohtoon.",
+  },
+  {
+    name: "Rahoitus",
+    body: "Yritysrahoitus, sijoittaminen ja rahoitusmarkkinat. Valmistuneet päätyvät pankkeihin, varainhoitoon, corporate finance -tehtäviin ja konsultointiin.",
+  },
+  {
+    name: "Yritysjuridiikka",
+    body: "Sopimus-, yhtiö- ja vero-oikeus liiketoiminnan näkökulmasta. Yhdistelmä, jota tarvitaan asianajotoimistoissa ja yritysten lakiasiainyksiköissä.",
+  },
+];
+
+// Photo credits. design-system.md §8 requires licensed imagery to be
+// credited; these are rendered in the subpage footer.
+export const photoCredits = [
+  {
+    subject: "Turun kauppakorkeakoulu",
+    author: "Anneli Salo",
+    licence: "CC BY-SA 3.0",
+    licenceUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+  },
+  {
+    subject: "Kauppakorkeakoulun pääsisäänkäynti",
+    author: "Samuli Lintula",
+    licence: "CC BY-SA 3.0",
+    licenceUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+  },
+  {
+    subject: "Ilmakuva Turusta",
+    author: "kallerna",
+    licence: "CC BY-SA 4.0",
+    licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+  },
 ];
 
 // What a partner gets, used on /kumppanit.
