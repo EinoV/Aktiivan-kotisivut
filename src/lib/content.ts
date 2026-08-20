@@ -15,7 +15,7 @@ export const orgFacts = {
   name: "Aktiiva ry",
   institution: "Turun kauppakorkeakoulu",
   fields: ["Laskentatoimi", "Rahoitus", "Yritysjuridiikka"],
-  founded: "1987",
+  founded: "1985",
   city: "Turku",
 };
 
@@ -195,7 +195,7 @@ export const activities = [
 
 // Numbers shown on /aktiiva. Placeholder figures.
 export const orgNumbers = [
-  { value: "1987", label: "Perustettu" },
+  { value: "1985", label: "Perustettu" },
   { value: "n. 450", label: "Jäsentä" },
   { value: "3", label: "Opintosuuntaa" },
   { value: "n. 40", label: "Tapahtumaa vuodessa" },
