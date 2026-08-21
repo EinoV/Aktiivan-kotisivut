@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { SiteFooter } from "@/components/SiteFooter";
-import { audiences, jobs, partners } from "@/lib/content";
+import { audiences, partners } from "@/lib/content";
 import styles from "./HomeSections.module.css";
 
 const partnerTiers = [
@@ -16,9 +16,12 @@ export function HomeSections({ footerNote }: { footerNote: ReactNode }) {
       <section id="aktiiva" className={styles.intro}>
         <p>
           Aktiiva ry on Turun kauppakorkeakoulun laskentatoimen, rahoituksen
-          ja yritysjuridiikan opiskelijoiden ainejärjestö — excursioita,
-          yritysvierailuja ja tapahtumia, joissa syntyy myös ystäviä, ei vain
-          opintopisteitä.
+          ja yritysjuridiikan opiskelijoiden ainejärjestö. Tavoitteenamme on
+          tukea opiskelijoitamme opinnoissa sekä rakentaa tiivistä yhteisöä
+          opiskelijoiden, yritysmaailman ja alumnien välille. Järjestämme
+          lukuvuoden aikana excursioita ja muita tapahtumia, jotka
+          mahdollistavat merkityksellisten kontaktien luomisen ja
+          pitkäaikaisten yhteistyösuhteiden syntymisen.
         </p>
       </section>
 
@@ -28,27 +31,6 @@ export function HomeSections({ footerNote }: { footerNote: ReactNode }) {
             <li key={a.id} className={styles.audienceRow}>
               <h3>{a.label}</h3>
               <p>{a.body}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section id="tyopaikat" className={styles.jobs}>
-        <div className={styles.jobsHead}>
-          <h2>Avoimet paikat</h2>
-          <Link href="/tyopaikat" className={styles.moreLink}>
-            Kaikki työpaikat →
-          </Link>
-        </div>
-        <ul className={styles.jobList}>
-          {jobs.map((job) => (
-            <li key={job.role + job.employer} className={styles.jobRow}>
-              <span className={styles.jobRole}>{job.role}</span>
-              <span className={styles.jobEmployer}>{job.employer}</span>
-              <span className={styles.jobField}>{job.field}</span>
-              <span className={styles.jobDeadline}>
-                Haku päättyy {job.deadline}
-              </span>
             </li>
           ))}
         </ul>
