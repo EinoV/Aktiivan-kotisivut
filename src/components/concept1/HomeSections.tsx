@@ -1,14 +1,7 @@
 import type { ReactNode } from "react";
-import Link from "next/link";
 import { SiteFooter } from "@/components/SiteFooter";
-import { audiences, partners } from "@/lib/content";
+import { audiences } from "@/lib/content";
 import styles from "./HomeSections.module.css";
-
-const partnerTiers = [
-  "Pääyhteistyökumppani",
-  "Yhteistyökumppani",
-  "Tapahtumakumppani",
-] as const;
 
 export function HomeSections({ footerNote }: { footerNote: ReactNode }) {
   return (
@@ -39,24 +32,8 @@ export function HomeSections({ footerNote }: { footerNote: ReactNode }) {
       <section id="kumppanit" className={styles.partners}>
         <div className={styles.jobsHead}>
           <h2>Kumppanit</h2>
-          <Link href="/kumppanit" className={styles.moreLink}>
-            Kumppanuudesta →
-          </Link>
         </div>
-        {partnerTiers.map((tier) => {
-          const names = partners.filter((p) => p.tier === tier);
-          if (names.length === 0) return null;
-          return (
-            <div key={tier} className={styles.partnerTier}>
-              <span className={styles.partnerTierLabel}>{tier}</span>
-              <div className={styles.partnerNames}>
-                {names.map((p) => (
-                  <span key={p.name}>{p.name}</span>
-                ))}
-              </div>
-            </div>
-          );
-        })}
+        <p>Etsimme tällä hetkellä yrityksiä yhteistyökumppaneiksimme</p>
       </section>
 
       <SiteFooter note={footerNote} />

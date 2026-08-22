@@ -80,8 +80,7 @@ export default function YhteystiedotPage() {
               <h3 className={styles.rowLabel}>Yhteistyö ja rekrytointi</h3>
               <p className={styles.rowBody}>
                 Kumppanuudet, excursiot ja työpaikkailmoitukset hoituvat
-                yrityssuhdevastaavan kautta. Ks.{" "}
-                <Link href="/kumppanit">kumppanuus</Link>.
+                yrityssuhdevastaavan kautta.
               </p>
             </li>
             <li className={styles.row}>

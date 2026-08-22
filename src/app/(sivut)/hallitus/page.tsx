@@ -17,7 +17,7 @@ export default function HallitusPage() {
         eyebrow="Toimikausi 2026"
         title="Hallitus"
         lead="Hallitus valitaan vuosittain syyskokouksessa, ja se vastaa Aktiivan toiminnasta kokonaisuudessaan. Kaikkiin alla oleviin voi olla suoraan yhteydessä oman vastuualueensa asioissa."
-        motif="contract"
+        motif="a"
       />
 
       <PhotoBand

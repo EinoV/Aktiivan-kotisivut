@@ -375,58 +375,6 @@
   border-bottom-color: var(--navy);
 }
 
-/* ---------- Inverted band ---------- */
-
-/* Exactly one of these exists on the whole subsite (the partner ask on
-   /kumppanit). Without photography there is otherwise no tonal contrast
-   anywhere — every pixel is navy on paper. §1 already defines --paper as
-   "text on dark backgrounds", so this stays inside the token system, but
-   it IS a deliberate exception to §4's "hairlines instead of
-   background-colour blocking". Keep it to one instance: repeated, it
-   becomes the colour-blocking the system rules out. */
-.invertBand {
-  margin-top: clamp(4rem, 8vw, 7rem);
-  padding: clamp(3rem, 7vw, 5rem) 0;
-  background: var(--navy);
-  color: var(--paper);
-}
-
-.invertInner {
-  max-width: 74rem;
-  margin: 0 auto;
-  padding: 0 clamp(1.5rem, 5vw, 5rem);
-}
-
-.invertTitle {
-  font-family: var(--font-fraunces);
-  font-weight: 480;
-  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
-  text-wrap: balance;
-  max-width: 20ch;
-}
-
-.invertBody {
-  margin-top: 1.1rem;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  max-width: 56ch;
-  /* A tint of --paper rather than --muted: --muted is specified for
-     secondary text on light backgrounds and has almost no contrast
-     against navy. */
-  color: rgba(243, 241, 234, 0.76);
-}
-
-.actionInverse {
-  composes: action;
-  border-color: var(--paper);
-  color: var(--paper);
-}
-
-.actionInverse:hover {
-  background: var(--paper);
-  color: var(--navy);
-}
-
 /* Single mobile threshold, per design-system §4. Previously this file
    broke at 760px while SiteNav broke at 720px. */
 @media (max-width: 640px) {

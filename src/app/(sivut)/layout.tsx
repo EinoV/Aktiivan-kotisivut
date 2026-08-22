@@ -13,7 +13,7 @@ import styles from "./layout.module.css";
  * page content.
  *
  * "(sivut)" is a route group — the parentheses keep it out of the URL,
- * so this file governs /aktiiva, /tyopaikat, … and not /sivut/aktiiva.
+ * so this file governs /aktiiva, /hallitus, … and not /sivut/aktiiva.
  */
 export default function SivutLayout({
   children,

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { NewsList } from "@/components/NewsList";
 import { PageHeader } from "@/components/PageHeader";
 import { PhotoBand } from "@/components/PhotoBand";
 import { activities, orgFacts, orgNumbers, studyPaths } from "@/lib/content";
@@ -37,16 +36,6 @@ export default function AktiivaPage() {
             </li>
           ))}
         </ul>
-      </section>
-
-      <section className={styles.section} aria-labelledby="ajankohtaista">
-        <div className={styles.sectionHead}>
-          <h2 id="ajankohtaista" className={styles.h2}>
-            Ajankohtaista
-          </h2>
-          <span className={styles.headNote}>Päivitetty elokuussa 2026</span>
-        </div>
-        <NewsList />
       </section>
 
       <section className={styles.gridSection} aria-labelledby="keita">
@@ -110,9 +99,6 @@ export default function AktiivaPage() {
             ))}
           </ul>
           <div className={styles.actionRow}>
-            <Link className={styles.action} href="/yhteystiedot">
-              Liity jäseneksi
-            </Link>
             <Link className={styles.action} href="/hallitus">
               Tutustu hallitukseen
             </Link>

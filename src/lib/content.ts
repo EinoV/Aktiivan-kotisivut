@@ -5,8 +5,6 @@
 export const nav = [
   { label: "Etusivu", href: "/" },
   { label: "Aktiiva", href: "/aktiiva" },
-  { label: "Työpaikat", href: "/tyopaikat" },
-  { label: "Kumppanit", href: "/kumppanit" },
   { label: "Hallitus", href: "/hallitus" },
   { label: "Yhteystiedot", href: "/yhteystiedot" },
 ];
@@ -201,48 +199,6 @@ export const orgNumbers = [
   { value: "n. 40", label: "Tapahtumaa vuodessa" },
 ];
 
-export type NewsItem = {
-  date: string;
-  isoDate: string;
-  title: string;
-  excerpt: string;
-  image: string;
-  imageAlt: string;
-};
-
-// Placeholder announcements — invented, not real events. The dates are
-// deliberately in the near past/future so the list never looks abandoned
-// in a demo; swap for real items before launch.
-export const news: NewsItem[] = [
-  {
-    date: "12.8.2026",
-    isoDate: "2026-08-12",
-    title: "Syksyn excursiokierros aukeaa haettavaksi",
-    excerpt:
-      "Kolme vierailua tilintarkastukseen ja yritysrahoitukseen, sekä ensimmäistä kertaa kokonainen päivä asianajotoimistossa. Paikat täytetään ilmoittautumisjärjestyksessä.",
-    image: "/photos/tse-building-card.jpg",
-    imageAlt: "Turun kauppakorkeakoulun rakennus.",
-  },
-  {
-    date: "28.7.2026",
-    isoDate: "2026-07-28",
-    title: "Fuksien tuutorointi käynnistyy elokuussa",
-    excerpt:
-      "Uudet opiskelijat saavat oman tuutoriryhmän heti orientaatioviikolla. Tuutorit ovat toisen ja kolmannen vuoden aktiivalaisia.",
-    image: "/photos/tse-entrance-card.jpg",
-    imageAlt: "Turun kauppakorkeakoulun pääsisäänkäynti.",
-  },
-  {
-    date: "3.7.2026",
-    isoDate: "2026-07-03",
-    title: "Vuosijuhlat järjestetään marraskuussa",
-    excerpt:
-      "Aktiivan vuosijuhlat kokoavat jäsenet, alumnit ja kumppanit saman pöydän ääreen. Ilmoittautuminen avataan syyskuussa.",
-    image: "/photos/turku-aerial-card.jpg",
-    imageAlt: "Ilmakuva Turun keskustasta ja Aurajoesta.",
-  },
-];
-
 // Study-path information, mirroring the "what you can study" block the
 // reference association sites lead with.
 export const studyPaths = [
@@ -280,25 +236,5 @@ export const photoCredits = [
     author: "kallerna",
     licence: "CC BY-SA 4.0",
     licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
-  },
-];
-
-// What a partner gets, used on /kumppanit.
-export const partnerBenefits = [
-  {
-    title: "Näkyvyys oikealle kohderyhmälle",
-    body: "Jäsenistö koostuu laskentatoimen, rahoituksen ja yritysjuridiikan opiskelijoista — ei koko korkeakoulusta. Viesti menee niille, jotka hakevat alanne tehtäviin.",
-  },
-  {
-    title: "Excursiot ja vierailut",
-    body: "Isännöikää vierailua toimistollanne tai pitäkää työpaja kampuksella. Tehokkain tapa tulla tunnetuksi työnantajana.",
-  },
-  {
-    title: "Rekrytointi-ilmoitukset",
-    body: "Avoimet paikat Työpaikat-sivulle ja jäsenkanaviin ilman erillistä veloitusta kumppanuuden aikana.",
-  },
-  {
-    title: "Tapahtumayhteistyö",
-    body: "Näkyvyys vuosijuhlissa ja muissa vuoden päätapahtumissa yhteistyön tason mukaan.",
   },
 ];

@@ -71,19 +71,6 @@
   font-size: clamp(1.75rem, 3vw, 2.25rem);
 }
 
-.moreLink {
-  font-size: 0.9rem;
-  color: var(--muted);
-  white-space: nowrap;
-  border-bottom: 1px solid transparent;
-  transition: color 0.15s ease, border-color 0.15s ease;
-}
-
-.moreLink:hover {
-  color: var(--navy);
-  border-bottom-color: var(--navy);
-}
-
 .jobList {
   list-style: none;
   border-top: 1px solid var(--rule);
@@ -142,47 +129,11 @@
   margin-bottom: 2rem;
 }
 
-.partnerTier {
-  padding: 1.25rem 0;
-  border-top: 1px solid var(--rule);
-  display: grid;
-  grid-template-columns: minmax(0, 12rem) minmax(0, 1fr);
-  gap: 1.5rem;
-  align-items: baseline;
-}
-
-.partnerTier:last-child {
-  border-bottom: 1px solid var(--rule);
-}
-
-.partnerTierLabel {
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.partnerNames {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 2rem;
-}
-
-.partnerTier:first-of-type .partnerNames {
-  font-family: var(--font-fraunces);
-  font-size: 1.5rem;
-}
-
-.partnerTier:not(:first-of-type) .partnerNames {
-  font-size: 1.05rem;
-}
-
 /* The footer moved to the shared SiteFooter component. */
 
 @media (max-width: 720px) {
   .audienceRow,
-  .jobRow,
-  .partnerTier {
+  .jobRow {
     grid-template-columns: 1fr;
   }
 
