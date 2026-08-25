@@ -66,9 +66,6 @@ export default function AktiivaPage() {
           <h2 id="opinnot" className={styles.h2}>
             Mitä täällä opiskellaan
           </h2>
-          <span className={styles.asideNote}>
-            Kolme pääainetta, yksi ainejärjestö.
-          </span>
         </div>
         <ul className={styles.rows} role="list">
           {studyPaths.map((s) => (
@@ -85,9 +82,6 @@ export default function AktiivaPage() {
           <h2 id="mita" className={styles.h2}>
             Mitä teemme
           </h2>
-          <span className={styles.asideNote}>
-            Toiminta pyörii lukuvuoden rytmissä, painottuen syksyyn.
-          </span>
         </div>
         <div>
           <ul className={styles.rows} role="list">

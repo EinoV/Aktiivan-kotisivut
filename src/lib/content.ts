@@ -109,7 +109,7 @@ export const partners: Partner[] = [
 // and `linkedin` directly as text, and reshaping them would break those
 // for no benefit. Only the live site links them.
 export const contact = {
-  email: "hallitus@aktiivary.fi",
+  email: "hallitus@aktiiva.fi",
   instagram: "@aktiiva",
   instagramUrl: "https://www.instagram.com/aktiiva/",
   linkedin: "Aktiiva ry",
@@ -124,50 +124,55 @@ export type BoardMember = {
   remit: string;
 };
 
-// Placeholder board — names are invented, not real officeholders.
-// Swap for the actual roster once Aktiiva confirms it.
+// TODO: placeholder emails — swap for the real addresses.
 export const board: BoardMember[] = [
   {
     role: "Puheenjohtaja",
-    name: "Etunimi Sukunimi",
-    email: "puheenjohtaja@aktiivary.fi",
+    name: "Eino Vuopala",
+    email: "puheenjohtaja@aktiiva.fi",
     remit: "Kokonaisvastuu toiminnasta, edustaminen ja yhteydet tiedekuntaan.",
   },
   {
     role: "Varapuheenjohtaja",
-    name: "Etunimi Sukunimi",
-    email: "varapuheenjohtaja@aktiivary.fi",
+    name: "Roy Järvinen",
+    email: "varapuheenjohtaja@aktiiva.fi",
     remit: "Puheenjohtajan tuki, hallituksen sisäinen koordinointi.",
   },
   {
     role: "Rahastonhoitaja",
-    name: "Etunimi Sukunimi",
-    email: "talous@aktiivary.fi",
+    name: "Topi Hälinen",
+    email: "talous@aktiiva.fi",
     remit: "Talousarvio, kirjanpito ja jäsenmaksut.",
   },
   {
     role: "Yrityssuhdevastaava",
-    name: "Etunimi Sukunimi",
-    email: "yritys@aktiivary.fi",
+    name: "Alex Hiltunen",
+    email: "yritys@aktiiva.fi",
     remit: "Kumppanuudet, excursiot ja rekrytointiyhteistyö.",
   },
   {
-    role: "Tapahtumavastaava",
-    name: "Etunimi Sukunimi",
-    email: "tapahtumat@aktiivary.fi",
-    remit: "Vuosijuhlat, sitsit ja viikoittainen tapahtumatoiminta.",
+    role: "Excursiovastaava",
+    name: "Emma Seppinen",
+    email: "excursiot@aktiiva.fi",
+    remit: "Excursioiden suunnittelu ja käytännön järjestelyt.",
   },
   {
-    role: "Viestintävastaava",
-    name: "Etunimi Sukunimi",
-    email: "viestinta@aktiivary.fi",
+    role: "Koulutuspoliittinen vastaava",
+    name: "Elmeri Kero",
+    email: "kopo@aktiiva.fi",
+    remit: "Opiskelijoiden edunvalvonta ja palaute opetuksesta tiedekunnalle.",
+  },
+  {
+    role: "Sihteeri",
+    name: "Mikael Lonka",
+    email: "sihteeri@aktiiva.fi",
+    remit: "Kokousten pöytäkirjat ja hallituksen asiakirjahallinto.",
+  },
+  {
+    role: "Tiedottaja",
+    name: "Jun Hyytiäinen",
+    email: "viestinta@aktiiva.fi",
     remit: "Kanavat, jäsenviestintä ja verkkosivut.",
-  },
-  {
-    role: "Opintovastaava",
-    name: "Etunimi Sukunimi",
-    email: "opinnot@aktiivary.fi",
-    remit: "Opiskelijoiden edunvalvonta ja palaute opetuksesta.",
   },
 ];
 
@@ -194,7 +199,7 @@ export const activities = [
 // Numbers shown on /aktiiva. Placeholder figures.
 export const orgNumbers = [
   { value: "1985", label: "Perustettu" },
-  { value: "n. 450", label: "Jäsentä" },
+  { value: "n. 400", label: "Opiskelijaa" },
   { value: "3", label: "Opintosuuntaa" },
   { value: "n. 40", label: "Tapahtumaa vuodessa" },
 ];

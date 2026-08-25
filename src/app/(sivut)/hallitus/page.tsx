@@ -55,9 +55,6 @@ export default function HallitusPage() {
           <h2 id="ehdolle" className={styles.h2}>
             Hallitukseen
           </h2>
-          <span className={styles.asideNote}>
-            Syyskokous pidetään marraskuussa.
-          </span>
         </div>
         <div>
           <p className={styles.prose}>

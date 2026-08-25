@@ -20,6 +20,13 @@ export default function YhteystiedotPage() {
         motif="a"
       />
 
+      <PhotoBand
+        src="/photos/tse-facade-wide.jpg"
+        alt="Turun kauppakorkeakoulun julkisivu lähikuvassa."
+        caption="Löydät meidät Turun kauppakorkeakoululta, Rehtorinpellonkadulta."
+        priority
+      />
+
       <section className={styles.section} aria-label="Yhteystiedot">
         <div className={styles.contactGrid}>
           <div>
@@ -70,9 +77,6 @@ export default function YhteystiedotPage() {
           <h2 id="kenelle" className={styles.h2}>
             Kenelle kirjoittaa
           </h2>
-          <span className={styles.asideNote}>
-            Vastuualueiden osoitteet löytyvät hallitussivulta.
-          </span>
         </div>
         <div>
           <ul className={styles.rows} role="list">
@@ -91,11 +95,11 @@ export default function YhteystiedotPage() {
               </p>
             </li>
             <li className={styles.row}>
-              <h3 className={styles.rowLabel}>Jäsenyys</h3>
+              <h3 className={styles.rowLabel}>Muut asiat</h3>
               <p className={styles.rowBody}>
-                Jäsenmaksut ja jäsenrekisteri kuuluvat rahastonhoitajalle.
-                Kaikkien vastuualueiden osoitteet löytyvät{" "}
-                <Link href="/hallitus">hallitussivulta</Link>.
+                Kaikki muu palaute ja kysymykset voi lähettää hallituksen
+                yleiseen sähköpostiin, niin ne ohjataan oikealle
+                vastuuhenkilölle.
               </p>
             </li>
           </ul>
@@ -109,15 +113,6 @@ export default function YhteystiedotPage() {
           </div>
         </div>
       </section>
-
-      {/* Closing image rather than a header band — the other pages open
-          with theirs, and repeating that on all five would put the
-          structural monotony straight back. */}
-      <PhotoBand
-        src="/photos/tse-facade-wide.jpg"
-        alt="Turun kauppakorkeakoulun julkisivu lähikuvassa."
-        caption="Löydät meidät Turun kauppakorkeakoululta, Rehtorinpellonkadulta."
-      />
     </>
   );
 }
