@@ -16,29 +16,39 @@ import styles from "./PhotoBand.module.css";
 export function PhotoBand({
   src,
   alt,
-  caption,
   priority = false,
+  cropBottom = false,
+  tall = false,
+  tallest = false,
+  narrow = false,
 }: {
   src: string;
   alt: string;
-  caption?: string;
   priority?: boolean;
+  /** Pins the cover-crop toward the bottom of the source photo instead of centering. */
+  cropBottom?: boolean;
+  /** Uses a taller frame so more of a portrait source survives the crop. */
+  tall?: boolean;
+  /** Taller still than `tall` — for a source that needs the crop to reach further up from the bottom. Takes precedence over tall. */
+  tallest?: boolean;
+  /** Caps the band to the text sections' content width instead of full-bleed. */
+  narrow?: boolean;
 }) {
+  const frameClass = tallest ? styles.frameTallest : tall ? styles.frameTall : "";
+  const imageClass = cropBottom ? styles.imageBottom : styles.image;
+
   return (
     <figure className={styles.band}>
-      <div className={styles.frame}>
+      <div className={`${styles.frame} ${frameClass} ${narrow ? styles.frameNarrow : ""}`}>
         <Image
           src={src}
           alt={alt}
           fill
           sizes="100vw"
-          className={styles.image}
+          className={imageClass}
           priority={priority}
         />
       </div>
-      {caption ? (
-        <figcaption className={styles.caption}>{caption}</figcaption>
-      ) : null}
     </figure>
   );
 }

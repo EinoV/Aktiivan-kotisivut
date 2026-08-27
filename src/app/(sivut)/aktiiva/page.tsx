@@ -14,17 +14,18 @@ export default function AktiivaPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Ainejärjestö"
         title="Aktiiva ry"
         lead="Laskentatoimen, rahoituksen ja yritysjuridiikan opiskelijoiden ainejärjestö Turun kauppakorkeakoulussa. Excursioita, tapahtumia ja edunvalvontaa — ja se osa opiskeluajasta, joka ei näy opintorekisterissä."
         motif="a"
       />
 
       <PhotoBand
-        src="/photos/tse-building-wide.jpg"
-        alt="Turun kauppakorkeakoulun rakennus, jonka julkisivussa lukee kauppakorkeakoulu."
-        caption="Turun kauppakorkeakoulu, Rehtorinpellonkatu — Aktiivan kotikenttä."
+        src="/photos/mckensey.jpg"
+        alt="Aktiivan jäseniä pöydän ääressä yhteisellä illallisella."
         priority
+        tall
+        cropBottom
+        narrow
       />
 
       <section className={styles.section} aria-label="Aktiiva lukuina">

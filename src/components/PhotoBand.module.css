@@ -19,18 +19,51 @@
   object-fit: cover;
 }
 
-.caption {
+/* Portrait source with the people lower in the frame and ceiling above —
+   pin the crop toward the bottom so they stay the focus, not the ceiling. */
+.imageBottom {
+  object-fit: cover;
+  object-position: bottom;
+}
+
+/* Taller band for a portrait source, so more of the photo survives the crop.
+   1:1 showed the full crop but read as too large on the page, so this is
+   scaled back ~33% in height from that square while keeping width at
+   100% and object-position untouched — same framing, smaller band. */
+.frameTall {
+  aspect-ratio: 3 / 2;
+}
+
+/* Afters photo only: bottom-anchored crop's visible window starts just
+   past the presentation screen in the source photo, trimming the
+   ceiling/curtain area above it. Raised from 6:7 to 5:4 to cut further
+   into the top of the frame. Same aspect-ratio on both breakpoints on
+   purpose: unlike .frameTall (whose per-breakpoint values were about
+   strip readability), the fraction of the source photo that ends up
+   visible depends only on this ratio, not on the frame's actual pixel
+   width, so one value keeps the crop identical at every viewport size.
+   Kept separate from .frameTall since Aktiiva's photo is already
+   correctly framed there and shouldn't move. */
+.frameTallest {
+  aspect-ratio: 5 / 4;
+}
+
+/* Capped to the same box as the text sections (sivut.module.css .section)
+   instead of running full-bleed — width shrinking also shrinks the height
+   proportionally since aspect-ratio stays fixed, and object-position is
+   untouched so the crop framing doesn't change. */
+.frameNarrow {
   max-width: 74rem;
-  margin: 0.85rem auto 0;
-  padding: 0 clamp(1.5rem, 5vw, 5rem);
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: var(--muted);
+  margin: 0 auto;
 }
 
 @media (max-width: 640px) {
   /* A 16:7 strip is too thin to read anything on a phone. */
   .frame {
     aspect-ratio: 3 / 2;
+  }
+
+  .frameTall {
+    aspect-ratio: 6 / 5;
   }
 }

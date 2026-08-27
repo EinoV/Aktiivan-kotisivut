@@ -14,7 +14,6 @@ export default function YhteystiedotPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Ota yhteyttä"
         title="Yhteystiedot"
         lead="Yleiset asiat hallituksen sähköpostiin. Yksittäistä vastuualuetta koskevat viestit menevät nopeimmin perille suoraan oikealle hallituslaiselle."
         motif="a"
@@ -23,8 +22,8 @@ export default function YhteystiedotPage() {
       <PhotoBand
         src="/photos/tse-facade-wide.jpg"
         alt="Turun kauppakorkeakoulun julkisivu lähikuvassa."
-        caption="Löydät meidät Turun kauppakorkeakoululta, Rehtorinpellonkadulta."
         priority
+        narrow
       />
 
       <section className={styles.section} aria-label="Yhteystiedot">

@@ -220,26 +220,3 @@ export const studyPaths = [
     body: "Sopimus-, yhtiö- ja vero-oikeus liiketoiminnan näkökulmasta. Yhdistelmä, jota tarvitaan asianajotoimistoissa ja yritysten lakiasiainyksiköissä.",
   },
 ];
-
-// Photo credits. design-system.md §8 requires licensed imagery to be
-// credited; these are rendered in the subpage footer.
-export const photoCredits = [
-  {
-    subject: "Turun kauppakorkeakoulu",
-    author: "Anneli Salo",
-    licence: "CC BY-SA 3.0",
-    licenceUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
-  },
-  {
-    subject: "Kauppakorkeakoulun pääsisäänkäynti",
-    author: "Samuli Lintula",
-    licence: "CC BY-SA 3.0",
-    licenceUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
-  },
-  {
-    subject: "Ilmakuva Turusta",
-    author: "kallerna",
-    licence: "CC BY-SA 4.0",
-    licenceUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
-  },
-];

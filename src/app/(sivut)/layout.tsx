@@ -1,7 +1,5 @@
-import Link from "next/link";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteNav } from "@/components/SiteNav";
-import { photoCredits } from "@/lib/content";
 import { fraunces, plexSans } from "@/lib/fonts";
 import styles from "./layout.module.css";
 
@@ -29,26 +27,7 @@ export default function SivutLayout({
       <main id="sisalto" className={styles.main}>
         {children}
       </main>
-      <SiteFooter
-        note={
-          <>
-            Valokuvat:{" "}
-            {photoCredits.map((c, i) => (
-              <span key={c.subject}>
-                {i > 0 ? " · " : ""}
-                {c.subject} — {c.author},{" "}
-                <a href={c.licenceUrl} target="_blank" rel="noopener noreferrer">
-                  {c.licence}
-                </a>
-              </span>
-            ))}
-            , Wikimedia Commons, käsitelty. Sisältö on paikkamerkkiä
-            designluonnosta varten — nimet, luvut ja yhteystiedot eivät ole
-            todellisia. Ks. myös{" "}
-            <Link href="/concepts">konseptien historia</Link>.
-          </>
-        }
-      />
+      <SiteFooter />
     </div>
   );
 }
