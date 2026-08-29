@@ -33,7 +33,7 @@ export function HomeSections({ footerNote }: { footerNote: ReactNode }) {
         <div className={styles.jobsHead}>
           <h2>Kumppanit</h2>
         </div>
-        <p>Etsimme tällä hetkellä yrityksiä yhteistyökumppaneiksimme</p>
+        <p>Etsimme tällä hetkellä yrityksiä yhteistyökumppaneiksimme.</p>
       </section>
 
       <SiteFooter note={footerNote} />

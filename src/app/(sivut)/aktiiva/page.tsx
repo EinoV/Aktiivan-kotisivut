@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
 import { PhotoBand } from "@/components/PhotoBand";
-import { activities, orgFacts, orgNumbers, studyPaths } from "@/lib/content";
+import { activities, orgFacts, orgNumbers } from "@/lib/content";
 import styles from "../sivut.module.css";
 
 export const metadata = {
@@ -15,7 +15,7 @@ export default function AktiivaPage() {
     <>
       <PageHeader
         title="Aktiiva ry"
-        lead="Laskentatoimen, rahoituksen ja yritysjuridiikan opiskelijoiden ainejärjestö Turun kauppakorkeakoulussa. Excursioita, tapahtumia ja edunvalvontaa — ja se osa opiskeluajasta, joka ei näy opintorekisterissä."
+        lead="Laskentatoimen, rahoituksen ja yritysjuridiikan opiskelijoiden ainejärjestö Turun kauppakorkeakoulussa. Excursioita, tapahtumia ja edunvalvontaa. Se osa opiskeluajasta, joka ei näy opintorekisterissä."
         motif="a"
       />
 
@@ -47,35 +47,15 @@ export default function AktiivaPage() {
         </div>
         <div>
           <p className={styles.prose}>
-            Aktiiva perustettiin vuonna {orgFacts.founded} yhdistämään ne
-            kauppatieteiden opiskelijat, joiden opinnot painottuvat
-            laskentatoimeen, rahoitukseen tai yritysjuridiikkaan. Kolme
-            suuntausta, yksi yhteisö — ja käytännössä samat urapolut, joita
-            jäsenet kulkevat rinnakkain.
-          </p>
-          <p className={styles.prose}>
-            Toiminta on jäsenten itsensä pyörittämää. Hallitus valitaan
-            vuosittain syyskokouksessa, ja kuka tahansa jäsen voi asettua
-            ehdolle. Suurin osa siitä, mitä Aktiiva tekee, syntyy siitä että
-            joku ehdotti sitä.
+            Aktiiva on Turun kauppakorkeakoulun laskentatoimen, rahoituksen ja
+            yritysjuridiikan opiskelijoiden oma järjestö. Toimintamme
+            rakentuu neljän keskeisen sidosryhmän ympärille: opiskelijoiden,
+            laskentatoimen ja rahoituksen laitoksen, yritysyhteistyökumppaneiden
+            ja alumnien. Tavoitteenamme on luoda toimiva silta opintojen ja
+            työelämän välille sekä vahvistaa yhteisöä, joka kantaa pitkälle
+            valmistumisen jälkeenkin.
           </p>
         </div>
-      </section>
-
-      <section className={styles.gridSection} aria-labelledby="opinnot">
-        <div className={styles.gridAside}>
-          <h2 id="opinnot" className={styles.h2}>
-            Mitä täällä opiskellaan
-          </h2>
-        </div>
-        <ul className={styles.rows} role="list">
-          {studyPaths.map((s) => (
-            <li key={s.name} className={styles.row}>
-              <h3 className={styles.rowLabel}>{s.name}</h3>
-              <p className={styles.rowBody}>{s.body}</p>
-            </li>
-          ))}
-        </ul>
       </section>
 
       <section className={styles.gridSection} aria-labelledby="mita">

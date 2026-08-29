@@ -82,14 +82,14 @@ export default function YhteystiedotPage() {
             <li className={styles.row}>
               <h3 className={styles.rowLabel}>Yhteistyö ja rekrytointi</h3>
               <p className={styles.rowBody}>
-                Kumppanuudet, excursiot ja työpaikkailmoitukset hoituvat
+                Kumppanuudet ja työpaikkailmoitukset hoituvat
                 yrityssuhdevastaavan kautta.
               </p>
             </li>
             <li className={styles.row}>
               <h3 className={styles.rowLabel}>Opintoasiat</h3>
               <p className={styles.rowBody}>
-                Kurssipalaute ja edunvalvonta opintovastaavalle — hän vie
+                Kurssipalaute ja edunvalvonta asiat opintovastaavalle — hän vie
                 asian eteenpäin tiedekuntaan.
               </p>
             </li>

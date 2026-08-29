@@ -22,7 +22,7 @@ export const audiences = [
     id: "opiskelijat",
     label: "Opiskelijoille",
     heading: "Yhteisö opintojen ajaksi ja sen jälkeen",
-    body: "Aktiiva tuo yhteen laskentatoimen, rahoituksen ja yritysjuridiikan opiskelijat. Tapahtumat, excursiot ja tuutorointi tekevät opinnoista muutakin kuin luentoja.",
+    body: "Aktiiva tuo yhteen laskentatoimen, rahoituksen ja yritysjuridiikan opiskelijat. Tapahtumat ja excursiot tekevät opinnoista muutakin kuin luentoja.",
   },
   {
     id: "tyonantajat",
@@ -34,7 +34,7 @@ export const audiences = [
     id: "alumnit",
     label: "Alumneille",
     heading: "Verkosto ei pääty valmistumiseen",
-    body: "Aktiivan alumniverkosto pitää yhteyden entisiin opiskelijoihin yllä — jaettu tausta kantaa pitkälle työelämään.",
+    body: "Aktiivan alumniverkosto pitää yhteyden entisiin opiskelijoihin yllä. Jaettu tausta kantaa pitkälle työelämään.",
   },
 ];
 
@@ -124,54 +124,53 @@ export type BoardMember = {
   remit: string;
 };
 
-// TODO: placeholder emails — swap for the real addresses.
 export const board: BoardMember[] = [
   {
     role: "Puheenjohtaja",
     name: "Eino Vuopala",
-    email: "puheenjohtaja@aktiiva.fi",
+    email: "eino.s.vuopala@utu.fi",
     remit: "Kokonaisvastuu toiminnasta, edustaminen ja yhteydet tiedekuntaan.",
   },
   {
     role: "Varapuheenjohtaja",
     name: "Roy Järvinen",
-    email: "varapuheenjohtaja@aktiiva.fi",
+    email: "roy.j.jarvinen@utu.fi",
     remit: "Puheenjohtajan tuki, hallituksen sisäinen koordinointi.",
   },
   {
     role: "Rahastonhoitaja",
     name: "Topi Hälinen",
-    email: "talous@aktiiva.fi",
-    remit: "Talousarvio, kirjanpito ja jäsenmaksut.",
+    email: "topi.s.halinen@utu.fi",
+    remit: "Talous, budjetointi ja kirjanpito.",
   },
   {
     role: "Yrityssuhdevastaava",
     name: "Alex Hiltunen",
-    email: "yritys@aktiiva.fi",
-    remit: "Kumppanuudet, excursiot ja rekrytointiyhteistyö.",
+    email: "alex.a.hiltunen@utu.fi",
+    remit: "Kumppanuudet ja rekrytointiyhteistyö.",
   },
   {
     role: "Excursiovastaava",
     name: "Emma Seppinen",
-    email: "excursiot@aktiiva.fi",
+    email: "emma.e.seppinen@utu.fi",
     remit: "Excursioiden suunnittelu ja käytännön järjestelyt.",
   },
   {
     role: "Koulutuspoliittinen vastaava",
     name: "Elmeri Kero",
-    email: "kopo@aktiiva.fi",
+    email: "elmeri.l.kero@utu.fi",
     remit: "Opiskelijoiden edunvalvonta ja palaute opetuksesta tiedekunnalle.",
   },
   {
     role: "Sihteeri",
     name: "Mikael Lonka",
-    email: "sihteeri@aktiiva.fi",
+    email: "mikael.j.lonka@utu.fi",
     remit: "Kokousten pöytäkirjat ja hallituksen asiakirjahallinto.",
   },
   {
     role: "Tiedottaja",
     name: "Jun Hyytiäinen",
-    email: "viestinta@aktiiva.fi",
+    email: "jun.e.hyytiainen@utu.fi",
     remit: "Kanavat, jäsenviestintä ja verkkosivut.",
   },
 ];
@@ -179,20 +178,20 @@ export const board: BoardMember[] = [
 // What the association actually does, used on /aktiiva.
 export const activities = [
   {
-    title: "Excursiot ja yritysvierailut",
-    body: "Vierailuja tilintarkastusyhteisöihin, pankkeihin ja asianajotoimistoihin sekä Turussa että pääkaupunkiseudulla. Näet työn ennen kuin haet sitä.",
+    title: "Opiskelijat",
+    body: "Tuomme yhteen laskentatoimesta, rahoituksesta ja yritysjuridiikasta kiinnostuneet opiskelijat järjestämällä erilaisia tapahtumia lukuvuoden aikana. Järjestämme opiskelijoille esimerkiksi excursioita ja rentoja afterwork tapahtumia. Jaamme myös ajankohtaista ja hyödyllistä sisältöä sosiaalisen median kanavillamme. Haluamme auttaa jäseniämme löytämään oman uran, edistymään opinnoissaan ja luomaan kontakteja sekä muihin opiskelijoihin että alumneihin.",
   },
   {
-    title: "Tapahtumat",
-    body: "Sitsit, vuosijuhlat, saunaillat ja lajikokeilut. Suurin osa jäsenten välisistä ystävyyksistä syntyy näissä, ei luentosalissa.",
+    title: "Laskentatoimen ja rahoituksen laitos",
+    body: "Tavoitteenamme on varmistaa, että opiskelijoiden ääni kuuluu laskentatoimen ja rahoituksen laitoksella. Käymme säännöllistä vuoropuhelua laitoksen kanssa ja välitämme opiskelijoiden palautetta suoraan sinne, missä opintoja kehitetään.",
   },
   {
-    title: "Opintojen tuki",
-    body: "Tuutorointi ensimmäisen vuoden opiskelijoille, tenttiarkisto ja kurssipalautteen välittäminen eteenpäin tiedekuntaan.",
+    title: "Yritysyhteistyö­kumppanit",
+    body: "Yhdistämme Turun kauppakorkeakoulun laskentatoimen, rahoituksen ja yritysjuridiikan opiskelijat ja yritykset. Sosiaalisen median kanaviemme ja sähköpostilistojemme kautta jaamme työpaikkailmoituksia ja muuta ajankohtaista sisältöä opiskelijoille. Lisäksi järjestämme yritystapahtumia, jotka mahdollistavat arvokkaiden kontaktien luomisen ja uramahdollisuuksien löytämisen.",
   },
   {
-    title: "Edunvalvonta",
-    body: "Opiskelijoiden ääni opetuksen kehittämisessä — kurssitarjonta, aikataulut ja arviointikäytännöt.",
+    title: "Alumnit",
+    body: "Tavoitteenamme on luoda pysyvä yhteys opiskelijoiden ja alumnien välille. Haluamme muun muassa tuoda alumneja mukaan tapahtumiimme ja tarjota opiskelijoille mahdollisuuden oppia heidän kokemuksistaan ja urapoluistaan.",
   },
 ];
 
@@ -201,7 +200,6 @@ export const orgNumbers = [
   { value: "1985", label: "Perustettu" },
   { value: "n. 400", label: "Opiskelijaa" },
   { value: "3", label: "Opintosuuntaa" },
-  { value: "n. 40", label: "Tapahtumaa vuodessa" },
 ];
 
 // Study-path information, mirroring the "what you can study" block the
