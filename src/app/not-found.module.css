@@ -1,0 +1,62 @@
+.root {
+  --navy: #112035;
+  --paper: #f3f1ea;
+
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  padding: clamp(3rem, 10vw, 7rem) clamp(1.5rem, 5vw, 5rem);
+  background: var(--navy);
+  color: var(--paper);
+  font-family: var(--font-plex-sans);
+}
+
+.inner {
+  max-width: 40rem;
+}
+
+/* The number is the label, not the headline — it says which failure this
+   is without shouting a bare error code at someone who did nothing
+   wrong. Same micro-label treatment as the rest of the site (§2). */
+.code {
+  margin-top: 2.25rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: rgba(243, 241, 234, 0.55);
+}
+
+.title {
+  margin-top: 0.6rem;
+  font-family: var(--font-newsreader), "Times New Roman", serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.body {
+  margin-top: 1.1rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(243, 241, 234, 0.72);
+  max-width: 46ch;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  margin-top: 2.25rem;
+}
+
+.links a {
+  padding: 0.85rem 1.6rem;
+  border: 1px solid rgba(243, 241, 234, 0.4);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.links a:hover {
+  border-color: var(--paper);
+}

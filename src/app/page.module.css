@@ -9,21 +9,3 @@
   font-family: var(--font-plex-sans);
   min-height: 100vh;
 }
-
-/* ---------- Hero-to-content transition band ---------- */
-
-.heroTransition {
-  height: clamp(22vh, 32vw, 34vh);
-  /* First stop matches HeroPinned's .heroBottomFade end colour exactly,
-     so the seam where the photo ends and this band begins lands on
-     identical flat colour and disappears. Stops spaced evenly (not
-     clustered toward the middle) so no single hand-off reads as a
-     sudden band. */
-  background: linear-gradient(
-    to bottom,
-    #0a1420 0%,
-    var(--muted) 45%,
-    #d9d3c6 75%,
-    var(--paper) 100%
-  );
-}

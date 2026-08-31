@@ -1,39 +1,93 @@
-/* Compact footer per design-system.md §7 — logo, contact column,
-   org-identity column in one row, wrapping at narrow widths. Hairline
-   rules only, no background blocking. */
+/* The end of the page, not a section boundary.
+
+   design-system.md §4 prefers hairlines over background blocking for
+   boundaries, and that still holds everywhere else — but closing on the
+   same navy the hero opens with makes the page read as one piece, which
+   the all-paper version did not. §7 should be updated to record this. */
 
 .footer {
-  padding: clamp(2rem, 5vw, 3rem) clamp(1.5rem, 5vw, 5rem)
-    clamp(2.5rem, 6vw, 4rem);
-  border-top: 1px solid var(--rule);
+  padding: clamp(3rem, 6vw, 4.5rem) clamp(1.5rem, 5vw, 5rem)
+    clamp(3rem, 7vw, 5rem);
+  background: var(--navy);
+  color: var(--paper);
+}
+
+/* Held to the same 74rem measure as every other section. Previously the
+   footer's blocks were spread across the full viewport by
+   justify-content: space-between, which on a wide screen opened a gap of
+   several hundred pixels between the mark and the contact column — that
+   reads as a void rather than as space. */
+.inner {
+  max-width: 74rem;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  gap: 2rem;
+  align-items: center;
+  gap: clamp(2rem, 6vw, 4rem);
   flex-wrap: wrap;
+}
+
+/* width: auto alongside the height so globals.css's `max-width: 100%`
+   can never squeeze the width on its own and distort the lockup. */
+.mark {
+  height: clamp(4.5rem, 7vw, 6.5rem);
+  width: auto;
 }
 
 .col {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  font-size: 0.9rem;
-  color: var(--muted);
+  gap: 0.7rem;
+  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+  /* --muted is specified for light backgrounds and nearly vanishes on
+     navy (§1), so secondary text here is --paper held back with opacity.
+     0.74 lands around 10:1 against --navy, well clear of 4.5:1. */
+  color: rgba(243, 241, 234, 0.74);
+}
+
+/* inline-flex, not inline: the icon is a block-level svg (globals.css
+   sets `svg { display: block }`), so an inline link would drop it onto
+   its own line. This also centres the mark against the label without any
+   baseline nudging. */
+.col a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.62em;
 }
 
 .col a:hover {
-  color: var(--navy);
+  color: var(--paper);
 }
 
-/* Attribution/legal note: small and discreet but never omitted (§7).
-   Discretion comes from size and placement only — the opacity: 0.7 this
-   used to carry dropped it to roughly 2.9:1 against --paper, under the
-   4.5:1 minimum for text this size. Full-strength --muted is ~5.2:1. */
+/* currentColor throughout, so the mark brightens with its label on hover
+   rather than needing a rule of its own. */
+.icon {
+  flex: none;
+  width: 1.15em;
+  height: 1.15em;
+}
+
+/* Only rendered where there is genuinely something to attribute — the
+   archived /concept-* routes, which use third-party photography and
+   OpenStreetMap data. Small and discreet but never omitted there (§7).
+   0.62 of --paper measures about 8:1 against --navy. */
 .note {
-  font-size: 0.75rem;
-  color: var(--muted);
-  width: 100%;
+  max-width: 74rem;
+  margin: clamp(2.5rem, 5vw, 3.5rem) auto 0;
   padding-top: 1.5rem;
-  margin-top: 1.5rem;
-  border-top: 1px solid var(--rule);
+  font-size: 0.78rem;
+  color: rgba(243, 241, 234, 0.62);
+  border-top: 1px solid rgba(243, 241, 234, 0.16);
+}
+
+.note a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+@media (max-width: 640px) {
+  .inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

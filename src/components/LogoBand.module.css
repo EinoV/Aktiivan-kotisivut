@@ -1,0 +1,16 @@
+.band {
+  display: flex;
+  justify-content: center;
+  background: var(--paper);
+  /* Bottom is half the top, with ContactBlock's margin supplying the
+     other half — 3.25+3.25 / 7vw+7vw / 5.5+5.5 reproduces
+     6.5rem/14vw/11rem at every viewport width. Change one and the seam
+     below stops being symmetrical. */
+  padding: clamp(6.5rem, 14vw, 11rem) clamp(1.5rem, 5vw, 5rem)
+    clamp(3.25rem, 7vw, 5.5rem);
+}
+
+.mark {
+  height: clamp(7rem, 12vw, 11.5rem);
+  width: auto;
+}

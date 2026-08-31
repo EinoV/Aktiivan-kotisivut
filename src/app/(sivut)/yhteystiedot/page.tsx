@@ -1,13 +1,27 @@
+import type { Metadata } from "next";
+import { ogImage } from "@/lib/site";
 import Link from "next/link";
+import { ContactBlock } from "@/components/ContactBlock";
 import { PageHeader } from "@/components/PageHeader";
-import { PhotoBand } from "@/components/PhotoBand";
-import { contact, orgFacts } from "@/lib/content";
+import { Reveal } from "@/components/Reveal";
 import styles from "../sivut.module.css";
 
-export const metadata = {
-  title: "Yhteystiedot — Aktiiva ry",
+export const metadata: Metadata = {
+  title: "Yhteystiedot",
   description:
     "Aktiiva ry:n yhteystiedot: sähköposti, sosiaalinen media ja postiosoite Turun kauppakorkeakoululla.",
+  alternates: { canonical: "/yhteystiedot" },
+  /* `images` restated even though opengraph-image.jpg sits at the app
+     root: a page-level openGraph object replaces the inherited one
+     rather than merging into it, so omitting this left every subpage
+     sharing with no picture at all — the exact failure this work set out
+     to fix, reintroduced one level down. */
+  openGraph: {
+    title: "Yhteystiedot — Aktiiva ry",
+    description: "Aktiiva ry:n yhteystiedot: sähköposti, sosiaalinen media ja postiosoite Turun kauppakorkeakoululla.",
+    url: "/yhteystiedot",
+    images: [ogImage],
+  },
 };
 
 export default function YhteystiedotPage() {
@@ -15,103 +29,52 @@ export default function YhteystiedotPage() {
     <>
       <PageHeader
         title="Yhteystiedot"
-        lead="Yleiset asiat hallituksen sähköpostiin. Yksittäistä vastuualuetta koskevat viestit menevät nopeimmin perille suoraan oikealle hallituslaiselle."
-        motif="a"
+        photo={{
+          src: "/photos/tuomiokirkko-banner.jpg",
+          alt: "Turun tuomiokirkko ja Aurajoki yöllä.",
+        }}
       />
 
-      <PhotoBand
-        src="/photos/tse-facade-wide.jpg"
-        alt="Turun kauppakorkeakoulun julkisivu lähikuvassa."
-        priority
-        narrow
-      />
+      <Reveal>
+        <section className={styles.gridSection} aria-labelledby="kenelle">
+          <div className={styles.gridAside}>
+            <h2 id="kenelle" className={styles.h2}>
+              Kenelle kirjoittaa
+            </h2>
+          </div>
+          <div>
+            <ul className={styles.rows} role="list">
+              <li className={styles.row}>
+                <h3 className={styles.rowLabel}>Yhteistyö ja rekrytointi</h3>
+                <p className={styles.rowBody}>
+                  Kumppanuudet ja työpaikkailmoitukset hoituvat{" "}
+                  <Link href="/hallitus">yrityssuhdevastaavan</Link> kautta.
+                </p>
+              </li>
+              <li className={styles.row}>
+                <h3 className={styles.rowLabel}>Opintoasiat</h3>
+                <p className={styles.rowBody}>
+                  Kurssipalaute ja edunvalvonta-asiat{" "}
+                  <Link href="/hallitus">opintovastaavalle</Link> — hän vie
+                  asian eteenpäin tiedekuntaan.
+                </p>
+              </li>
+              <li className={styles.row}>
+                <h3 className={styles.rowLabel}>Muut asiat</h3>
+                <p className={styles.rowBody}>
+                  Kaikki muu palaute ja kysymykset voi lähettää hallituksen
+                  yleiseen sähköpostiin, niin ne ohjataan oikealle
+                  vastuuhenkilölle.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </Reveal>
 
-      <section className={styles.section} aria-label="Yhteystiedot">
-        <div className={styles.contactGrid}>
-          <div>
-            <span className={styles.contactLabel}>Sähköposti</span>
-            <p className={styles.contactValue}>
-              <a href={`mailto:${contact.email}`}>{contact.email}</a>
-            </p>
-          </div>
-          <div>
-            <span className={styles.contactLabel}>Instagram</span>
-            <p className={styles.contactValue}>
-              <a
-                href={contact.instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {contact.instagram}
-              </a>
-            </p>
-          </div>
-          <div>
-            <span className={styles.contactLabel}>LinkedIn</span>
-            <p className={styles.contactValue}>
-              <a
-                href={contact.linkedinUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {contact.linkedin}
-              </a>
-            </p>
-          </div>
-          <div>
-            <span className={styles.contactLabel}>Postiosoite</span>
-            <p className={styles.contactValue}>
-              {orgFacts.name}
-              <br />
-              {orgFacts.institution}
-              <br />
-              {contact.address}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className={styles.gridSection} aria-labelledby="kenelle">
-        <div className={styles.gridAside}>
-          <h2 id="kenelle" className={styles.h2}>
-            Kenelle kirjoittaa
-          </h2>
-        </div>
-        <div>
-          <ul className={styles.rows} role="list">
-            <li className={styles.row}>
-              <h3 className={styles.rowLabel}>Yhteistyö ja rekrytointi</h3>
-              <p className={styles.rowBody}>
-                Kumppanuudet ja työpaikkailmoitukset hoituvat
-                yrityssuhdevastaavan kautta.
-              </p>
-            </li>
-            <li className={styles.row}>
-              <h3 className={styles.rowLabel}>Opintoasiat</h3>
-              <p className={styles.rowBody}>
-                Kurssipalaute ja edunvalvonta asiat opintovastaavalle — hän vie
-                asian eteenpäin tiedekuntaan.
-              </p>
-            </li>
-            <li className={styles.row}>
-              <h3 className={styles.rowLabel}>Muut asiat</h3>
-              <p className={styles.rowBody}>
-                Kaikki muu palaute ja kysymykset voi lähettää hallituksen
-                yleiseen sähköpostiin, niin ne ohjataan oikealle
-                vastuuhenkilölle.
-              </p>
-            </li>
-          </ul>
-          <div className={styles.actionRow}>
-            <a className={styles.action} href={`mailto:${contact.email}`}>
-              Lähetä sähköpostia
-            </a>
-            <Link className={styles.action} href="/hallitus">
-              Hallituksen yhteystiedot
-            </Link>
-          </div>
-        </div>
-      </section>
+      <Reveal>
+        <ContactBlock />
+      </Reveal>
     </>
   );
 }

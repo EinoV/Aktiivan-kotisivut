@@ -23,18 +23,24 @@ export const audiences = [
     label: "Opiskelijoille",
     heading: "Yhteisö opintojen ajaksi ja sen jälkeen",
     body: "Aktiiva tuo yhteen laskentatoimen, rahoituksen ja yritysjuridiikan opiskelijat. Tapahtumat ja excursiot tekevät opinnoista muutakin kuin luentoja.",
+    image: "/photos/tse-entrance-wide.jpg",
+    imageAlt: "Turun kauppakorkeakoulun sisäänkäynti.",
   },
   {
     id: "tyonantajat",
     label: "Työnantajille",
     heading: "Suora yhteys alan opiskelijoihin",
     body: "Kumppanuus Aktiivan kanssa tuo yrityksenne näkyville juuri niille opiskelijoille, jotka suuntaavat laskentatoimen, rahoituksen ja yritysjuridiikan tehtäviin.",
+    image: "/photos/kupittaa-architecture.jpg",
+    imageAlt: "Toimistorakennusten julkisivuja Kupittaalla.",
   },
   {
     id: "alumnit",
     label: "Alumneille",
     heading: "Verkosto ei pääty valmistumiseen",
     body: "Aktiivan alumniverkosto pitää yhteyden entisiin opiskelijoihin yllä. Jaettu tausta kantaa pitkälle työelämään.",
+    image: "/photos/turku-riverside-wide.jpg",
+    imageAlt: "Aurajoen rantaa Turun keskustassa.",
   },
 ];
 
@@ -179,19 +185,27 @@ export const board: BoardMember[] = [
 export const activities = [
   {
     title: "Opiskelijat",
-    body: "Tuomme yhteen laskentatoimesta, rahoituksesta ja yritysjuridiikasta kiinnostuneet opiskelijat järjestämällä erilaisia tapahtumia lukuvuoden aikana. Järjestämme opiskelijoille esimerkiksi excursioita ja rentoja afterwork tapahtumia. Jaamme myös ajankohtaista ja hyödyllistä sisältöä sosiaalisen median kanavillamme. Haluamme auttaa jäseniämme löytämään oman uran, edistymään opinnoissaan ja luomaan kontakteja sekä muihin opiskelijoihin että alumneihin.",
+    body: "Järjestämme lukuvuoden aikana excursioita ja afterwork-tapahtumia. Tavoitteena on auttaa jäseniä edistymään opinnoissaan, löytämään oma ura ja luomaan kontakteja niin opiskelijoihin kuin alumneihin.",
+    image: "/photos/toiminta-opiskelijat.jpg",
+    imageAlt: "Kauppakorkeakoulun sisäänkäynti iltavalaistuksessa, julkisivulla TuKY:n tunnus.",
   },
   {
     title: "Laskentatoimen ja rahoituksen laitos",
-    body: "Tavoitteenamme on varmistaa, että opiskelijoiden ääni kuuluu laskentatoimen ja rahoituksen laitoksella. Käymme säännöllistä vuoropuhelua laitoksen kanssa ja välitämme opiskelijoiden palautetta suoraan sinne, missä opintoja kehitetään.",
+    body: "Varmistamme, että opiskelijoiden ääni kuuluu laitoksella. Käymme säännöllistä vuoropuhelua ja välitämme palautetta suoraan sinne, missä opintoja kehitetään.",
+    image: "/photos/toiminta-laitos.jpg",
+    imageAlt: "Opiskelijoita luentosalissa esityksen aikana.",
   },
   {
     title: "Yritysyhteistyö­kumppanit",
-    body: "Yhdistämme Turun kauppakorkeakoulun laskentatoimen, rahoituksen ja yritysjuridiikan opiskelijat ja yritykset. Sosiaalisen median kanaviemme ja sähköpostilistojemme kautta jaamme työpaikkailmoituksia ja muuta ajankohtaista sisältöä opiskelijoille. Lisäksi järjestämme yritystapahtumia, jotka mahdollistavat arvokkaiden kontaktien luomisen ja uramahdollisuuksien löytämisen.",
+    body: "Jaamme työpaikkailmoituksia ja muuta ajankohtaista sähköpostilistoillamme ja sosiaalisessa mediassa. Järjestämme lisäksi yritystapahtumia, joissa opiskelijat ja työnantajat kohtaavat.",
+    image: "/photos/toiminta-yritykset.jpg",
+    imageAlt: "Paneelikeskustelu Aktiivan yritystapahtumassa.",
   },
   {
     title: "Alumnit",
-    body: "Tavoitteenamme on luoda pysyvä yhteys opiskelijoiden ja alumnien välille. Haluamme muun muassa tuoda alumneja mukaan tapahtumiimme ja tarjota opiskelijoille mahdollisuuden oppia heidän kokemuksistaan ja urapoluistaan.",
+    body: "Tuomme alumneja mukaan tapahtumiimme ja tarjoamme opiskelijoille mahdollisuuden oppia heidän kokemuksistaan ja urapoluistaan.",
+    image: "/photos/toiminta-alumnit.jpg",
+    imageAlt: "Aktiivan jäseniä iltatapahtumassa.",
   },
 ];
 

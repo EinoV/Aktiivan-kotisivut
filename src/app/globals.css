@@ -53,7 +53,26 @@ button {
   outline-offset: 3px;
 }
 
+/* Scroll reveal (see Reveal.tsx). Global and keyed off a data attribute
+   rather than a CSS module class, so the <noscript> block in the root
+   layout can override it — a hashed class could not be named from there,
+   and content stuck at opacity 0 because JS never ran is much worse than
+   content that never fades. 0.9s matches aalto.finance, measured. */
+[data-reveal] {
+  transition: opacity 0.9s ease;
+}
+
+[data-reveal="false"] {
+  opacity: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  /* Belt and braces: Reveal.tsx already shows itself outright here, but
+     this holds even if the effect never mounts. */
+  [data-reveal] {
+    opacity: 1;
+  }
+
   * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;

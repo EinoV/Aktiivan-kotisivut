@@ -39,9 +39,10 @@
 }
 
 .h2 {
-  font-family: var(--font-fraunces);
-  font-weight: 480;
+  font-family: var(--font-newsreader, var(--font-fraunces)), "Times New Roman", serif;
+  font-weight: 500;
   font-size: clamp(1.75rem, 3vw, 2.25rem);
+  letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
@@ -98,10 +99,106 @@
   grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
 }
 
+/* The activity spread: full-bleed navy, alternating 3:2 photograph and
+   text. This is the homepage's audiences block, deliberately reused —
+   the two sections cover the same four groups, so having them share a
+   layout is honest about that rather than dressing it up as something
+   new.
+   Navy also gives the page its tonal break. Everything from the banner
+   down was one unbroken sheet of --paper, which is most of why it read
+   flat; the page now goes dark - light - dark. */
+.activitySection {
+  padding: clamp(4rem, 9vw, 7rem) clamp(1.5rem, 5vw, 5rem);
+  background: var(--navy);
+  color: var(--paper);
+  /* A hairline closes the section rather than the colour simply ending
+     — §4 asks for one device per boundary. The paper logo band below
+     supplies the break to the navy contact block after it. */
+  border-bottom: 1px solid rgba(243, 241, 234, 0.14);
+}
+
+/* Extra room under the section that runs into the navy spread. Sections
+   here carry no bottom padding — the rhythm comes from the next one's
+   top padding — but that next padding is inside the navy field, so it
+   adds no paper. Without this the prose ends close to the colour change. */
+.spacedBelow {
+  padding-bottom: clamp(3.5rem, 8vw, 6rem);
+}
+
+.activityInner {
+  max-width: 74rem;
+  margin: 0 auto;
+}
+
+.activityList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3rem, 7vw, 5rem);
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.activityRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.75rem, 5vw, 4rem);
+  align-items: center;
+}
+
+/* `order` on the media only: the text stays second in the DOM whichever
+   side the picture lands on, so reading order never depends on layout. */
+.activityRow:nth-child(even) .activityMedia {
+  order: 2;
+}
+
+.activityMedia {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: rgba(243, 241, 234, 0.06);
+}
+
+.activityImage {
+  object-fit: cover;
+}
+
+.activityTitle {
+  font-family: var(--font-newsreader, var(--font-fraunces)), "Times New Roman", serif;
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  margin-bottom: 0.7rem;
+  text-wrap: balance;
+}
+
+/* --muted is specified for light backgrounds and nearly vanishes on navy
+   (§1), so secondary text here is --paper held back with opacity. */
+.activityBody {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(243, 241, 234, 0.72);
+  max-width: 52ch;
+}
+
+
+@media (max-width: 720px) {
+  .activityRow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Stacked, the picture always leads. Keeping the alternation here
+     would put a photograph below its own text on every other row. */
+  .activityRow:nth-child(even) .activityMedia {
+    order: 0;
+  }
+}
+
 .rowLabel {
-  font-family: var(--font-fraunces);
-  font-weight: 480;
+  font-family: var(--font-newsreader, var(--font-fraunces)), "Times New Roman", serif;
+  font-weight: 500;
   font-size: clamp(1.2rem, 2vw, 1.5rem);
+  letter-spacing: -0.01em;
 }
 
 .rowBody {
@@ -113,28 +210,50 @@
 
 /* ---------- Numbers strip ---------- */
 
+/* The opening element of the page, so it gets its own spacing rather
+   than the shared .section rule — it is the first thing under the
+   photograph and needs room to land. */
+.numbersSection {
+  max-width: 74rem;
+  margin: 0 auto;
+  padding: clamp(3.5rem, 8vw, 6rem) clamp(1.5rem, 5vw, 5rem) 0;
+}
+
 .numbers {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-  gap: clamp(1.5rem, 4vw, 3rem);
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  padding: clamp(2rem, 4vw, 2.75rem) 0;
+  /* Explicit three, not auto-fit. auto-fit sized a fourth track for the
+     available width, collapsed it to 0 for want of a fourth number, and
+     still charged a gap for it — which left the three columns 48px
+     narrower than the row they sit in. */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(2.25rem, 5vw, 3rem) clamp(2rem, 6vw, 5rem);
+  margin-top: clamp(1.75rem, 4vw, 2.75rem);
 }
 
+@media (max-width: 640px) {
+  .numbers {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* No rules above or below. Framed by hairlines and set at 2.6rem these
+   read as a caption strip under the photograph; unframed at this size
+   they read as the page's opening statement — which is what they are,
+   being the first thing after the banner. */
 .numberValue {
   display: block;
-  font-family: var(--font-fraunces);
-  font-weight: 480;
-  font-size: clamp(1.9rem, 3.5vw, 2.6rem);
-  line-height: 1.1;
+  font-family: var(--font-newsreader, var(--font-fraunces)), "Times New Roman", serif;
+  font-weight: 500;
+  font-size: clamp(3.25rem, 7vw, 5.75rem);
+  letter-spacing: -0.02em;
+  line-height: 1;
   font-variant-numeric: tabular-nums;
 }
 
 .numberLabel {
   display: block;
-  margin-top: 0.4rem;
+  margin-top: 0.7rem;
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -235,8 +354,10 @@
    partner page's entire hierarchy was missing without any visible
    error. Never reintroduce a positional selector here. */
 .tierPrimary .tierNames {
-  font-family: var(--font-fraunces);
+  font-family: var(--font-newsreader, var(--font-fraunces)), "Times New Roman", serif;
+  font-weight: 500;
   font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  letter-spacing: -0.015em;
 }
 
 /* ---------- Board ---------- */
@@ -251,8 +372,8 @@
 }
 
 .boardRole {
-  font-family: var(--font-fraunces);
-  font-weight: 480;
+  font-family: var(--font-newsreader, var(--font-fraunces)), "Times New Roman", serif;
+  font-weight: 500;
   font-size: clamp(1.1rem, 1.8vw, 1.3rem);
 }
 
@@ -282,37 +403,6 @@
 }
 
 /* ---------- Contact ---------- */
-
-.contactGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  gap: clamp(1.5rem, 4vw, 3rem);
-  border-top: 1px solid var(--rule);
-  padding-top: clamp(2rem, 4vw, 2.5rem);
-}
-
-.contactLabel {
-  display: block;
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 0.6rem;
-}
-
-.contactValue {
-  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
-  line-height: 1.5;
-}
-
-.contactValue a {
-  border-bottom: 1px solid var(--rule);
-  transition: border-color 0.15s ease;
-}
-
-.contactValue a:hover {
-  border-bottom-color: var(--navy);
-}
 
 /* ---------- Actions ---------- */
 

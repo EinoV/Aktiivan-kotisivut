@@ -1,35 +1,27 @@
-import Link from "next/link";
-import { DisciplinesReveal } from "@/components/DisciplinesReveal";
-import { HeroPinned } from "@/components/HeroPinned";
+import { HeroCastle } from "@/components/HeroCastle";
 import { HomeSections } from "@/components/concept1/HomeSections";
-import { fraunces, plexSans } from "@/lib/fonts";
+import { fraunces, newsreader, plexSans } from "@/lib/fonts";
 import styles from "./page.module.css";
 
-export const metadata = {
-  title: "Aktiiva ry",
-  description:
-    "Aktiiva ry on Turun kauppakorkeakoulun laskentatoimen, rahoituksen ja yritysjuridiikan ainejärjestö.",
-};
+/* No title here on purpose: the root layout's template would turn one
+   into "Aktiiva ry — Aktiiva ry". The default it sets is already right. */
 
 export default function Home() {
   return (
-    <div className={`${styles.root} ${fraunces.variable} ${plexSans.variable}`}>
-      <HeroPinned />
+    <div
+      className={`${styles.root} ${fraunces.variable} ${newsreader.variable} ${plexSans.variable}`}
+    >
+      <HeroCastle />
 
-      <div className={styles.heroTransition} aria-hidden="true" />
+      {/* Closes on ContactBlock, like every subpage, rather than on the
+          footer — the two carry the same three channels and rendering
+          both put them twice within a couple of hundred pixels.
 
-      <DisciplinesReveal />
-
-      <HomeSections
-        footerNote={
-          <>
-            Saaristovalokuva: Saaristomeri, Turun edustalla — kuva: Hajotthu,
-            Wikimedia Commons (CC BY-SA 3.0 / GFDL), käsitelty. Sisältö on
-            paikkamerkkiä designluonnosta varten; ks. myös{" "}
-            <Link href="/concepts">konseptien historia</Link>.
-          </>
-        }
-      />
+          No footerNote either: every photograph on the live site is the
+          organisation's own, so there is nothing to attribute. The
+          archived /concept-* routes still pass one and keep the footer —
+          they use third-party photography and OpenStreetMap data. */}
+      <HomeSections audiencesVariant="feature" logoBand closing="contact" />
     </div>
   );
 }

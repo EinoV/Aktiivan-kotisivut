@@ -1,6 +1,13 @@
 /* Shared below-fold sections for the concept-1 family (1b, 1b-a, 1b-b).
    Relies on custom properties (--navy, --paper, --muted, --rule,
-   --font-fraunces, --font-plex-sans) inherited from each page's root. */
+   --font-newsreader, --font-fraunces, --font-plex-sans) inherited from
+   each page's root.
+
+   Headings ask for --font-newsreader and fall back to --font-fraunces.
+   That fallback is load-bearing, not defensive: the live homepage
+   declares both and gets Newsreader, matching its hero, while
+   /concept-1b and /concept-1b-a declare only Fraunces and keep the type
+   they were originally drawn with. They are design history. */
 
 .intro {
   padding: clamp(3.5rem, 8vw, 6rem) clamp(1.5rem, 5vw, 5rem) 0;
@@ -20,6 +27,35 @@
   margin-bottom: clamp(4rem, 8vw, 7rem);
 }
 
+/* The page's one tonal break, and its only editorial spread. Everything
+   below the hero used to be a single unbroken sheet of --paper down to
+   the footer, which is most of why it read flat next to a dark
+   photographic hero. This runs the middle section on brand navy with a
+   photograph per audience, so the page goes dark - light - dark - light.
+
+   Full-bleed by being a direct child of the page root: the horizontal
+   padding positions the content, the background spans the viewport. The
+   hairline borders come off — the colour change is the boundary, and
+   design-system.md §4 asks for one device per boundary, not two. */
+.audiencesFeature {
+  padding: clamp(4rem, 9vw, 7rem) clamp(1.5rem, 5vw, 5rem);
+  border-top: none;
+  background: var(--navy);
+  color: var(--paper);
+  /* Runs straight into the footer, which is navy too. The 112px of
+     --paper that used to sit between them was this section's
+     margin-bottom, not a band of anything — a leftover gap left behind
+     when the partners section was removed, and there is no colour that
+     makes a leftover gap look deliberate.
+
+     A hairline marks where the section ends and the footer begins,
+     which is the same device design-system.md §4 asks for and the same
+     one the footer uses internally. Painting the gap navy instead would
+     have merged the two into one undivided field. */
+  margin-bottom: 0;
+  border-bottom: 1px solid rgba(243, 241, 234, 0.14);
+}
+
 .audienceList {
   list-style: none;
   display: flex;
@@ -29,115 +65,92 @@
   margin: 0 auto;
 }
 
+.audiencesFeature .audienceList {
+  gap: clamp(3rem, 7vw, 5rem);
+}
+
+/* Stacked by default — label, heading, body — in both variants, so the
+   two read the same way and there is one layout to reason about. */
 .audienceRow {
   display: grid;
-  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
   gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: baseline;
 }
 
-.audienceRow h3 {
-  font-family: var(--font-fraunces);
-  font-weight: 480;
+.audiencesFeature .audienceRow {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.75rem, 5vw, 4rem);
+  align-items: center;
+}
+
+/* Alternating sides, the device Aalto Finance uses down its About page.
+   `order` on the media rather than on both cells: one declaration, and
+   the text always stays second in the DOM so reading order never
+   depends on which side the picture landed. */
+.audiencesFeature .audienceRow:nth-child(even) .audienceMedia {
+  order: 2;
+}
+
+.audienceMedia {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: rgba(243, 241, 234, 0.06);
+}
+
+.audienceImage {
+  object-fit: cover;
+}
+
+/* A micro-label per design-system.md §2, and the same treatment the hero
+   plinth uses, so the two read as the same system. */
+.audienceLabel {
+  font-family: var(--font-plex-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.85rem;
+}
+
+.audiencesFeature .audienceLabel {
+  color: rgba(243, 241, 234, 0.55);
+}
+
+.audienceHeading {
+  font-family: var(--font-newsreader, var(--font-fraunces)), "Times New Roman", serif;
+  font-weight: 500;
   font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  margin-bottom: 0.7rem;
+  text-wrap: balance;
 }
 
-.audienceRow p {
+.audienceBody {
   font-size: 1.05rem;
   line-height: 1.6;
   color: var(--muted);
   max-width: 52ch;
 }
 
-.jobs {
-  padding: 0 clamp(1.5rem, 5vw, 5rem);
-  margin-bottom: clamp(4rem, 8vw, 7rem);
-  max-width: 74rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.jobsHead {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 1.75rem;
-  gap: 1rem;
-}
-
-.jobsHead h2 {
-  font-family: var(--font-fraunces);
-  font-weight: 480;
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
-}
-
-.jobList {
-  list-style: none;
-  border-top: 1px solid var(--rule);
-}
-
-.jobRow {
-  display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 0.9fr) auto;
-  gap: 1.5rem;
-  align-items: baseline;
-  padding: 1.15rem 0.75rem;
-  margin: 0 -0.75rem;
-  border-bottom: 1px solid var(--rule);
-  border-radius: 2px;
-  transition: background-color 0.15s ease;
-}
-
-.jobRow:hover {
-  background-color: rgba(17, 32, 53, 0.045);
-}
-
-.jobRole {
-  font-size: 1.08rem;
-  font-weight: 500;
-}
-
-.jobEmployer {
-  font-size: 1rem;
-  color: var(--muted);
-}
-
-.jobField {
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-
-.jobDeadline {
-  font-size: 0.9rem;
-  font-variant-numeric: tabular-nums;
-  text-align: right;
-  white-space: nowrap;
-}
-
-.partners {
-  padding: 0 clamp(1.5rem, 5vw, 5rem);
-  margin-bottom: clamp(4rem, 8vw, 7rem);
-  max-width: 74rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.partners h2 {
-  font-family: var(--font-fraunces);
-  font-weight: 480;
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
-  margin-bottom: 2rem;
+/* --muted is specified for light backgrounds and nearly vanishes on navy
+   (design-system.md §1), so secondary text here is --paper held back with
+   opacity instead. */
+.audiencesFeature .audienceBody {
+  color: rgba(243, 241, 234, 0.72);
 }
 
 /* The footer moved to the shared SiteFooter component. */
 
 @media (max-width: 720px) {
-  .audienceRow,
-  .jobRow {
+  .audiencesFeature .audienceRow {
     grid-template-columns: 1fr;
   }
 
-  .jobDeadline {
-    text-align: left;
+  /* Stacked on a phone the picture belongs above the words it
+     introduces, on every row — the alternation only means anything
+     side by side. */
+  .audiencesFeature .audienceRow:nth-child(even) .audienceMedia {
+    order: 0;
   }
 }

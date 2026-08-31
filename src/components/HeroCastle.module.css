@@ -1,0 +1,288 @@
+/* ---------- Blue-hour hero ---------- */
+
+/* Static by design — see the note in HeroCastle.tsx. There are no
+   keyframes in this file, and nothing here needs a prefers-reduced-motion
+   block as a result. */
+
+.hero {
+  position: relative;
+  height: 100vh;
+  height: 100dvh; /* iOS toolbar fix — keep both, dvh overrides where supported */
+  min-height: 34rem;
+  overflow: hidden;
+  background: #0a1420; /* shows through until the photo decodes */
+  /* Contains the grain layer's mix-blend-mode, so it blends against the
+     photograph and nothing else. Without it, it would reach through to
+     whatever the page paints underneath. */
+  isolation: isolate;
+}
+
+/* ---------- The photograph ---------- */
+
+.media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Only bites on ultrawide viewports, where cover crops vertically
+     instead of horizontally; biasing upward keeps the sky — and so the
+     headline's backdrop — rather than the black foreground. */
+  object-position: center 35%;
+}
+
+/* ---------- Grain ---------- */
+
+/* Not decoration: a phone's night mode leaves visible banding in a smooth
+   dark sky, and a little noise on top breaks it up. Kept still — moving
+   it was part of the motion that got pulled, and the banding fix does not
+   depend on movement. */
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.055;
+  mix-blend-mode: overlay;
+  background-repeat: repeat;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Grading, done live and lightly ---------- */
+
+/* design-system.md §3 bakes its grading into the source file, but that
+   recipe assumes a normally-exposed photograph. This one is already
+   blue-hour dark and desaturated; running the full recipe over it killed
+   the one thing worth keeping, the blue glow behind the roofline. So the
+   file ships ungraded and only two local corrections happen here: a top
+   scrim for nav legibility (§5) and edge darkening to seat the frame. */
+.vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(10, 20, 32, 0.5) 0%,
+      rgba(10, 20, 32, 0) 22%
+    ),
+    radial-gradient(
+      115% 85% at 50% 44%,
+      rgba(10, 20, 32, 0) 38%,
+      rgba(10, 20, 32, 0.62) 100%
+    );
+}
+
+/* Ends on the exact colour .heroTransition (page.module.css) starts at,
+   so the seam between the two elements lands on identical flat colour. */
+.bottomFade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent 62%, #0a1420 100%);
+}
+
+/* ---------- Entrance ---------- */
+
+/* The hero assembles rather than arriving whole: wordmark, then the line
+   under it, then the band at the foot. Opacity only, 0.9s — the same
+   language as the scroll reveal further down the page (see Reveal.tsx),
+   so the two read as one behaviour rather than two effects.
+
+   A CSS animation and not the Reveal component: this is above the fold,
+   so there is nothing to observe, and the hero stays a server component
+   with no client JS at all.
+
+   fill-mode `both` is load-bearing. globals.css clamps every
+   animation-duration to 0.01ms under prefers-reduced-motion; without a
+   fill mode these would be left sitting on the opacity-0 start frame
+   instead of landing on the visible end frame.
+
+   The `appear` keyframe itself lives in globals.css — the subpage banner
+   titles use the same one. */
+
+/* Deliberately duplicated in HeroCastle.module.css and
+   PageHeader.module.css rather than shared from globals.css. CSS Modules
+   rewrites `animation-name` inside a module to a hashed name whether or
+   not the keyframe is defined there, so a module referring to a global
+   keyframe silently resolves to nothing and no animation runs at all.
+   Two six-line copies beat an effect that fails without erroring. */
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------- Type ---------- */
+
+.overlay {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  pointer-events: none;
+}
+
+.overlay a,
+.overlay button {
+  pointer-events: auto;
+}
+
+/* Sits in the sky band. The roofline crosses the frame at about 41% and
+   the lit walls start around 45%, so the copy block is centred at 26% to
+   keep it clear of both — the dark roof would be survivable, the bright
+   limestone below it would not. */
+.copy {
+  position: absolute;
+  left: 50%;
+  top: 26%;
+  transform: translate(-50%, -50%);
+  width: min(90vw, 44rem);
+  text-align: center;
+}
+
+.headline {
+  margin-bottom: clamp(1rem, 2vh, 1.6rem);
+}
+
+/* Sized by width, not height: globals.css gives every img
+   `max-width: 100%`, and with a fixed height that cap would squeeze the
+   width alone and distort the letterforms on a narrow screen. Driving
+   width and letting height follow means the cap can never bite.
+
+   Tied to the shorter viewport dimension as well as the wider one, like
+   the headline it replaced — on a short laptop screen the sky band is
+   only a few hundred pixels tall, and a mark sized on width alone would
+   run into the roofline. */
+.wordmark {
+  width: clamp(9.5rem, min(22vw, 33vh), 19rem);
+  height: auto;
+  margin-inline: auto;
+  /* drop-shadow, not text-shadow: there is no text here any more. Same
+     wide, soft glow, which holds the thin serif strokes apart from the
+     cloud texture behind them. */
+  filter: drop-shadow(0 1px 24px rgba(6, 12, 22, 0.55));
+  animation: appear 0.9s ease-out 0.15s both;
+}
+
+.sub {
+  margin-top: clamp(1rem, 2vh, 1.6rem);
+  margin-inline: auto;
+  max-width: 34ch;
+  font-family: var(--font-plex-sans), system-ui, sans-serif;
+  font-size: clamp(1rem, 1.35vw, 1.2rem);
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0;
+  color: rgba(243, 241, 234, 0.8);
+  text-wrap: balance;
+  animation: appear 0.9s ease-out 0.35s both;
+}
+
+/* ---------- Plinth ---------- */
+
+/* A solid navy ground along the foot of the hero rather than words
+   floating on the photograph. Brand navy (#112035) is lighter than the
+   castle's unlit foreground, so this reads as a step up out of the frame
+   — which is the separation that made Rogo's white logo band feel
+   deliberate. design-system.md §4/§5 rule out boxing the words
+   themselves; framing the whole band is the level where it's allowed. */
+.plinth {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: clamp(1.35rem, 3.2vh, 2rem) 0;
+  background: var(--navy, #112035);
+  border-top: 1px solid rgba(243, 241, 234, 0.14);
+  /* Last of the three, so the hero settles top-down. The delays stay
+     short: globals.css clamps duration under reduced motion but not
+     delay, so a long one would leave a visible gap before it appears. */
+  animation: appear 0.9s ease-out 0.55s both;
+}
+
+/* The mask has to live here, not on .plinth: applied to the plinth it
+   would fade the navy ground away at both edges as well as the words. */
+.viewport {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 10%,
+    #000 90%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 10%,
+    #000 90%,
+    transparent 100%
+  );
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  list-style: none;
+  /* Tuned so the crawl lands near the 50px/s Rogo runs its logo band at
+     across common desktop widths — measured at 50px/s on a 1440px
+     viewport. Re-timed when the band changed from words to logos: the
+     logos are far narrower than "YRITYSJURIDIIKKA", so the same duration
+     over a shorter track had dropped the crawl to 22px/s, which reads as
+     not moving at all. Speed is not constant: the track grows with the
+     viewport because the item spacing is vw-based. */
+  animation: marquee 31s linear infinite;
+  will-change: transform;
+}
+
+/* Deliberately has no fill-mode. globals.css clamps every
+   animation-duration to 0.01ms under prefers-reduced-motion, so this ends
+   instantly; with no fill the track drops back to its untransformed
+   position and simply sits still, which is what a reduced-motion reader
+   should get. `both` here would freeze it at -50% instead. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  /* Spacing lives here, not as the track's `gap` — see MARQUEE_REPEATS. */
+  margin-right: clamp(3.5rem, 8vw, 8rem);
+}
+
+/* Height per logo (set inline from BAND_LOGOS), width follows, so each
+   mark is placed on its optical size rather than squeezed into a shared
+   box. width: auto plus the height is safe here because these are flex
+   items with `flex: none` — globals.css's `max-width: 100%` can never
+   squeeze the width on its own and distort them. */
+.logo {
+  flex: none;
+  width: auto;
+  height: var(--logo-height);
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 640px) {
+  .copy {
+    /* The portrait crop carries far more sky than the landscape one — the
+       roofline sits at about 53% rather than 41% — so the copy drops to
+       stay centred in the space it actually has. At 26% it read as
+       top-heavy, with a gap between the subline and the castle. */
+    top: 34%;
+    width: min(88vw, 28rem);
+  }
+}

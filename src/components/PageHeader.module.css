@@ -1,54 +1,98 @@
+/* Full-bleed photographic banner, title set over its lower half — the
+   opening move the homepage hero already makes, brought to the subpages
+   so they stop reading as a different, quieter site.
+
+   Navy underneath the photograph, not --paper: it shows while the image
+   decodes and fills any gap, so the band never flashes light. */
 .header {
-  padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 5rem)
-    clamp(2.5rem, 6vw, 4rem);
+  position: relative;
+  /* Taller than it was. The nav floats over the top of this band and the
+     title sits at its foot, so a short banner squeezes the photograph
+     into a strip where faces land under one or the other. */
+  min-height: clamp(20rem, 38vw, 31rem);
+  display: grid;
+  align-content: end;
+  /* The top pad has to clear the nav, which now floats over this banner
+     rather than sitting above it. On a phone the nav stacks the mark over
+     wrapped links and runs about 93px tall, against 70px on desktop — so
+     the floor is set for the phone, where the collision actually happens.
+     Content is bottom-aligned, so on desktop this padding only ever
+     matters if the title and lead grow tall enough to reach it. */
+  padding: clamp(7rem, 8vw, 7.5rem) clamp(1.5rem, 5vw, 5rem)
+    clamp(2rem, 5vw, 3.25rem);
+  background: var(--navy);
+  color: var(--paper);
+  overflow: hidden;
+}
+
+.photo {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Weighted hard to the bottom, where the type sits, and lifted almost
+   off the photograph above it.
+
+   Retuned when the banners became night photographs. The old curve
+   (0.62 at 38%, 0.34 at the top) was set for the daylight interiors that
+   used to be here; over a night shot it drove the mid-band composite to
+   32 against a 30 navy page, so the picture read as a flat navy panel.
+   Measured, not eyeballed. design-system.md §5 allows a scrim purely for
+   legibility, which is all the bottom third is now doing. */
+.scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(10, 20, 32, 0.88) 0%,
+    rgba(10, 20, 32, 0.55) 30%,
+    rgba(10, 20, 32, 0.22) 55%,
+    rgba(10, 20, 32, 0.18) 100%
+  );
+}
+
+/* position: relative is load-bearing — it lifts the text above the two
+   absolutely positioned layers without needing a z-index on any of them. */
+.text {
+  position: relative;
+  width: 100%;
   max-width: 74rem;
   margin: 0 auto;
-  border-bottom: 1px solid var(--rule);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 15rem);
-  gap: clamp(1.5rem, 5vw, 4rem);
-  align-items: center;
 }
 
-.text {
-  min-width: 0;
-}
-
-.markSlot {
-  /* The motif is texture behind the title band, not an illustration to
-     be read — it stays out of the tab order and off the a11y tree via
-     DotMark's own aria-hidden. */
-  height: clamp(8rem, 16vw, 12rem);
-  align-self: center;
-  justify-self: end;
-  width: 100%;
-  pointer-events: none;
+/* Deliberately duplicated in HeroCastle.module.css and
+   PageHeader.module.css rather than shared from globals.css. CSS Modules
+   rewrites `animation-name` inside a module to a hashed name whether or
+   not the keyframe is defined there, so a module referring to a global
+   keyframe silently resolves to nothing and no animation runs at all.
+   Two six-line copies beat an effect that fails without erroring. */
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .title {
-  font-family: var(--font-fraunces);
-  font-weight: 480;
+  /* Newsreader, matching the hero. The fallback keeps Fraunces working for
+     anything that still only declares that variable. Newsreader is a
+     lighter text serif than Fraunces, so display sizes need a little more
+     weight and the negative tracking the hero headline already uses. */
+  font-family: var(--font-newsreader, var(--font-fraunces)), "Times New Roman",
+    serif;
+  font-weight: 500;
   font-size: clamp(2.25rem, 6vw, 4rem);
-  line-height: 1.05;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
   text-wrap: balance;
-  margin-bottom: clamp(1.25rem, 3vw, 1.75rem);
-}
-
-.lead {
-  font-size: clamp(1.1rem, 1.6vw, 1.28rem);
-  line-height: 1.6;
-  color: var(--muted);
-  max-width: 58ch;
-}
-
-@media (max-width: 640px) {
-  .header {
-    grid-template-columns: 1fr;
-  }
-
-  /* On a phone the motif would push the lead below the fold for no
-     informational gain, so it drops out entirely rather than shrinking. */
-  .markSlot {
-    display: none;
-  }
+  /* The same wide, soft glow the hero headline uses — it holds the thin
+     serif strokes apart from whatever texture is behind them. */
+  text-shadow: 0 1px 28px rgba(6, 12, 22, 0.55);
+  /* Same entrance as the homepage hero, same shared keyframe. A banner
+     title is above the fold, so there is nothing to scroll into view —
+     this is a load animation, not the Reveal component. */
+  animation: appear 0.9s ease-out 0.15s both;
 }

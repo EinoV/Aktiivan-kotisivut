@@ -6,7 +6,12 @@
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  padding: 2rem clamp(1.5rem, 5vw, 5rem) 0;
+  /* Symmetric top and bottom. The bottom used to be 0, which was
+     invisible while the nav floated over a photograph with no bounding
+     box of its own — but the subpage nav now sits on a backdrop-blurred
+     strip whose height is exactly this element's, so the mark ended up
+     flush against the strip's lower edge with 0px to spare. */
+  padding: 2rem clamp(1.5rem, 5vw, 5rem);
 }
 
 .logoLink {
@@ -42,7 +47,6 @@
 /* onLight: over the paper background on every subpage. */
 .onLight {
   color: var(--navy);
-  padding-bottom: 2rem;
 }
 
 .onLight .nav a {
@@ -58,26 +62,51 @@
   border-bottom-color: var(--navy);
 }
 
-/* Six items will not fit one line on a phone — wrap rather than
-   truncate or hide behind a menu (design-system.md §5). */
+/* The four items and the mark will not share one line on a phone — the
+   links alone run 293px of the 335px available. Stacked rather than
+   truncated or hidden behind a menu (design-system.md §5). */
 @media (max-width: 720px) {
   .header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.85rem;
-    padding-top: 1.5rem;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    /* Small, because the links carry their own vertical padding below
+       and it reads as part of the gap. */
+    gap: 0.35rem;
+    padding: 1.5rem 1.25rem;
   }
 
   .nav {
     flex-wrap: wrap;
-    row-gap: 0.5rem;
-    column-gap: 0.9rem;
-    font-size: 0.8rem;
+    row-gap: 0.25rem;
+    column-gap: 1.1rem;
   }
 
+  /* Full size, not shrunk. These are the only navigation on the page and
+     at 0.85rem with a 0.2rem underline gap the tap target came to 22px —
+     under the 24px WCAG 2.5.8 minimum, on the one device where the
+     pointer is a fingertip. The padding is what makes the target. */
   .nav a {
-    font-size: 0.85rem;
+    padding: 0.7rem 0;
+  }
+
+  /* The current-page marker switches from a border to a text underline
+     here. A border sits on the padding edge, so with the target padding
+     above it drew 11px below the word and read as a stray rule; an
+     underline stays attached to the text whatever the box does. */
+  .nav a {
+    border-bottom: none;
+  }
+
+  .onDark .nav a.active,
+  .onLight .nav a.active {
+    border-bottom-color: transparent;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.32em;
+  }
+
+  .onDark .nav a:hover,
+  .onLight .nav a:hover {
+    border-bottom-color: transparent;
   }
 }

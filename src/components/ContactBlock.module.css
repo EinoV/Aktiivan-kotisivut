@@ -1,0 +1,104 @@
+/* Every subpage ends here — there is no footer below it on those pages,
+   because this block already carries the same channels. design-system.md §4
+   prefers hairlines to background blocking for section boundaries, but
+   this is the same exception the homepage audience block and the footer
+   already make: a full-bleed brand-navy field, where the colour change is
+   itself the boundary. */
+.block {
+  /* Paper above, navy here. The sections that precede this one all carry
+     `padding-bottom: 0` — their rhythm comes from the *next* section's
+     top padding, which works between two paper sections and leaves
+     nothing at all at the paper/navy seam. The last paragraph on a
+     subpage ended flush against this edge. The margin supplies the beat
+     the missing bottom padding never did, and it is slightly wider than
+     the gap between two paper sections because a colour change needs
+     more room than a plain break does.
+     `margin-bottom` stays 0: this is the last element on every page, so
+     a gap under it would just show the page background. */
+  margin-top: clamp(3.25rem, 7vw, 5.5rem);
+  padding: clamp(4rem, 9vw, 7rem) clamp(1.5rem, 5vw, 5rem);
+  background: var(--navy);
+  color: var(--paper);
+}
+
+.inner {
+  max-width: 74rem;
+  margin: 0 auto;
+  /* Centres the heading and the address line, both of which shrink to
+     their own content. The channel stack opts back out below — see
+     .channels. */
+  text-align: center;
+}
+
+.heading {
+  font-family: var(--font-newsreader, var(--font-fraunces)), "Times New Roman",
+    serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+/* A stack, not a grid: each channel is one row, and the icons line up in
+   a column down the left so the eye reads them as a set. Equal weight
+   throughout — unlike the version this replaced, where the email was set
+   at display size and the rest demoted. */
+.channels {
+  display: flex;
+  flex-direction: column;
+  /* fit-content plus auto margins, not `align-items: center`: centring
+     each row individually would size every row to its own text and the
+     icons would stop lining up. This centres the stack as one block and
+     leaves the rows left-aligned inside it, so the icon column holds. */
+  width: fit-content;
+  margin-inline: auto;
+  text-align: left;
+  gap: clamp(1rem, 2.4vw, 1.5rem);
+  list-style: none;
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+  color: var(--paper);
+}
+
+/* inline-flex, not inline: globals.css sets `svg { display: block }`, so
+   an inline icon would drop onto its own line. */
+.channels a,
+.address {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(0.9rem, 1.8vw, 1.25rem);
+}
+
+.channels a {
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease;
+}
+
+.channels a:hover {
+  border-bottom-color: rgba(243, 241, 234, 0.5);
+}
+
+/* Roughly twice the cap height of the label beside it, which is what
+   gives the column its presence — at the 1.15em used elsewhere on the
+   site these would read as footnote marks rather than as the row's
+   anchor. */
+.icon {
+  flex: none;
+  width: 1.9em;
+  height: 1.9em;
+}
+
+/* A record, not a channel: nothing to click, so it sits below the stack
+   and a step quieter. --muted is specified for light backgrounds and
+   nearly vanishes on navy (§1), so this is --paper held back instead. */
+.address {
+  align-items: flex-start;
+  margin-top: clamp(2rem, 4.5vw, 3rem);
+  font-size: 0.95rem;
+  color: rgba(243, 241, 234, 0.6);
+}
+
+.address .icon {
+  width: 1.3em;
+  height: 1.3em;
+}

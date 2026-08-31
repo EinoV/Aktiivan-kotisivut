@@ -4,6 +4,10 @@
    silently repaint them. */
 
 .shell {
+  /* Anchors .navSlot, which is lifted out of flow so the page header's
+     photograph starts at the very top of the page. */
+  position: relative;
+
   --navy: #112035;
   --paper: #f3f1ea;
   --muted: #5c6572;
@@ -20,9 +24,28 @@
   flex-direction: column;
 }
 
+/* Copied from aalto.finance, where the header is position: absolute over
+   the banner with a full-width child carrying backdrop-filter: blur(4px)
+   and no background tint at all. Measured there, not guessed: 4px, and
+   the tint really is transparent — the frosting comes from the blur
+   smearing the photograph, nothing else.
+
+   Absolute rather than sticky, also as they have it: the bar belongs to
+   the banner and scrolls away with it. A sticky glass bar over the paper
+   sections below would have nothing worth blurring. */
+.navSlot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  backdrop-filter: blur(4px);
+}
+
+/* No bottom padding: the page now ends on ContactBlock's own navy field,
+   and any padding here would show as a strip of --paper beneath it. */
 .main {
   flex: 1;
-  padding-bottom: clamp(4rem, 8vw, 7rem);
 }
 
 /* Keyboard users previously had to tab through the whole six-item nav on
