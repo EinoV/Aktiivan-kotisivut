@@ -17,6 +17,8 @@ export const siteName = "Aktiiva ry";
 export const siteDescription =
   "Aktiiva ry on Turun kauppakorkeakoulun laskentatoimen, rahoituksen ja yritysjuridiikan opiskelijoiden ainejärjestö.";
 
+export const assetPath = (path: string) => `/Aktiivan-kotisivut${path}`;
+
 /** The shared social card. Kept here so the subpages, which have to
  *  restate it (a page-level openGraph replaces the inherited one rather
  *  than merging), all describe the same file the same way. */

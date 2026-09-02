@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ogImage } from "@/lib/site";
+import { assetPath, ogImage } from "@/lib/site";
 import Link from "next/link";
 import { ContactBlock } from "@/components/ContactBlock";
 import { PageHeader } from "@/components/PageHeader";
@@ -30,7 +30,7 @@ export default function YhteystiedotPage() {
       <PageHeader
         title="Yhteystiedot"
         photo={{
-          src: "/photos/tuomiokirkko-banner.jpg",
+          src: assetPath("/photos/tuomiokirkko-banner.jpg"),
           alt: "Turun tuomiokirkko ja Aurajoki yöllä.",
         }}
       />
