@@ -2,12 +2,11 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: 'export',
+  basePath: '/Aktiivan-kotisivut',
+  assetPrefix: '/Aktiivan-kotisivut',
   images: {
     unoptimized: true,
   },
-  // Jos sivustosi osoite on muotoa käyttäjä.github.io/aktiiva-website,
-  // poista alla olevalta riviltä kommenttimerkit // ja tarkista repositoriosi nimi:
-  // basePath: '/aktiiva-website',
 };
 
 export default nextConfig;

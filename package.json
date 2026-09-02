@@ -2,14 +2,14 @@
   "name": "aktiiva-website",
   "version": "0.1.0",
   "private": true,
-  "homepage": "",
+  "homepage": "https://aktiiva.github.io/Aktiivan-kotisivut",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d out -b gh-pages"
+    "deploy": "gh-pages -d out -b gh-pages -t"
   },
   "dependencies": {
     "next": "^16.3.4",
