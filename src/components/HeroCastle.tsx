@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import { SiteNav } from "@/components/SiteNav";
+import { assetPath } from "@/lib/site";
 import styles from "./HeroCastle.module.css";
 
 /**
@@ -61,14 +62,14 @@ const BAND_LOGOS: ReadonlyArray<{
   displayHeight: string;
 }> = [
   {
-    src: "/logo/aktiiva-mark-white.png",
+    src: assetPath("/logo/aktiiva-mark-white.png"),
     alt: "Aktiiva",
     width: 198,
     height: 220,
     displayHeight: "3.1rem",
   },
   {
-    src: "/logo/tuky-logo.png",
+    src: assetPath("/logo/tuky-logo.png"),
     alt: "Turun kauppakorkeakoulun ylioppilaskunta",
     width: 1080,
     height: 1080,
@@ -90,7 +91,7 @@ export function HeroCastle() {
         <picture>
           <source
             media="(max-width: 640px)"
-            srcSet="/photos/hero-castle-mobile.jpg"
+            srcSet={assetPath("/photos/hero-castle-mobile.jpg")}
             width={941}
             height={1672}
           />
@@ -99,7 +100,7 @@ export function HeroCastle() {
               photograph altogether. */}
           <img
             className={styles.photo}
-            src="/photos/hero-castle-wide.jpg"
+            src={assetPath("/photos/hero-castle-wide.jpg")}
             alt="Turun linna valaistuna sinisenä hetkenä."
             width={1672}
             height={941}
@@ -128,7 +129,7 @@ export function HeroCastle() {
           <h1 className={styles.headline}>
             <Image
               className={styles.wordmark}
-              src="/logo/aktiiva-wordmark-white.png"
+              src={assetPath("/logo/aktiiva-wordmark-white.png")}
               alt="Aktiiva"
               width={611}
               height={112}

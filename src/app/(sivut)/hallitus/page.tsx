@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ogImage } from "@/lib/site";
+import { assetPath, ogImage } from "@/lib/site";
 import { ContactBlock } from "@/components/ContactBlock";
 import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
@@ -30,7 +30,7 @@ export default function HallitusPage() {
       <PageHeader
         title="Hallitus"
         photo={{
-          src: "/photos/kokoushuone-banner.jpg",
+          src: assetPath("/photos/kokoushuone-banner.jpg"),
           alt: "Kokoushuoneen pitkä neuvottelupöytä ja tuolirivistö.",
         }}
       />

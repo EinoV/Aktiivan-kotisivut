@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ogImage } from "@/lib/site";
+import { assetPath, ogImage } from "@/lib/site";
 import Image from "next/image";
 import { ContactBlock } from "@/components/ContactBlock";
 import { LogoBand } from "@/components/LogoBand";
@@ -32,7 +32,7 @@ export default function AktiivaPage() {
       <PageHeader
         title="Aktiiva ry"
         photo={{
-          src: "/photos/dinner-banner.jpg",
+          src: assetPath("/photos/dinner-banner.jpg"),
           alt: "Aktiivan jäseniä pöydän ääressä yhteisellä illallisella.",
         }}
       />

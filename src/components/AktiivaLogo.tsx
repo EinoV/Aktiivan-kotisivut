@@ -1,15 +1,16 @@
 import Image from "next/image";
+import { assetPath } from "@/lib/site";
 
 const SOURCES = {
-  "mark-navy": { src: "/logo/aktiiva-mark-navy.png", w: 198, h: 220 },
-  "mark-white": { src: "/logo/aktiiva-mark-white.png", w: 198, h: 220 },
+  "mark-navy": { src: assetPath("/logo/aktiiva-mark-navy.png"), w: 198, h: 220 },
+  "mark-white": { src: assetPath("/logo/aktiiva-mark-white.png"), w: 198, h: 220 },
   /* Extracted from aktiiva-lockup-navy-bg.png, the only asset that
      carries the mark at any size — the shipped lockups are 198px tall,
      which caps a retina screen at about 104px on the page. This is
      2.9x that, so the homepage logo band can be set large without
      upscaling. */
   "mark-navy-lg": {
-    src: "/logo/aktiiva-mark-navy-lg.png",
+    src: assetPath("/logo/aktiiva-mark-navy-lg.png"),
     w: 615,
     h: 645,
   },

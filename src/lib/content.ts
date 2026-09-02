@@ -2,6 +2,8 @@
 // Company/partner names are intentionally generic placeholders, not real
 // confirmed partners — swap for real names once Aktiiva confirms them.
 
+import { assetPath } from "@/lib/site";
+
 export const nav = [
   { label: "Etusivu", href: "/" },
   { label: "Aktiiva", href: "/aktiiva" },
@@ -23,7 +25,7 @@ export const audiences = [
     label: "Opiskelijoille",
     heading: "Yhteisö opintojen ajaksi ja sen jälkeen",
     body: "Aktiiva tuo yhteen laskentatoimen, rahoituksen ja yritysjuridiikan opiskelijat. Tapahtumat ja excursiot tekevät opinnoista muutakin kuin luentoja.",
-    image: "/photos/tse-entrance-wide.jpg",
+    image: assetPath("/photos/tse-entrance-wide.jpg"),
     imageAlt: "Turun kauppakorkeakoulun sisäänkäynti.",
   },
   {
@@ -31,7 +33,7 @@ export const audiences = [
     label: "Työnantajille",
     heading: "Suora yhteys alan opiskelijoihin",
     body: "Kumppanuus Aktiivan kanssa tuo yrityksenne näkyville juuri niille opiskelijoille, jotka suuntaavat laskentatoimen, rahoituksen ja yritysjuridiikan tehtäviin.",
-    image: "/photos/kupittaa-architecture.jpg",
+    image: assetPath("/photos/kupittaa-architecture.jpg"),
     imageAlt: "Toimistorakennusten julkisivuja Kupittaalla.",
   },
   {
@@ -39,7 +41,7 @@ export const audiences = [
     label: "Alumneille",
     heading: "Verkosto ei pääty valmistumiseen",
     body: "Aktiivan alumniverkosto pitää yhteyden entisiin opiskelijoihin yllä. Jaettu tausta kantaa pitkälle työelämään.",
-    image: "/photos/turku-riverside-wide.jpg",
+    image: assetPath("/photos/turku-riverside-wide.jpg"),
     imageAlt: "Aurajoen rantaa Turun keskustassa.",
   },
 ];
@@ -186,25 +188,25 @@ export const activities = [
   {
     title: "Opiskelijat",
     body: "Järjestämme lukuvuoden aikana excursioita ja afterwork-tapahtumia. Tavoitteena on auttaa jäseniä edistymään opinnoissaan, löytämään oma ura ja luomaan kontakteja niin opiskelijoihin kuin alumneihin.",
-    image: "/photos/toiminta-opiskelijat.jpg",
+    image: assetPath("/photos/toiminta-opiskelijat.jpg"),
     imageAlt: "Kauppakorkeakoulun sisäänkäynti iltavalaistuksessa, julkisivulla TuKY:n tunnus.",
   },
   {
     title: "Laskentatoimen ja rahoituksen laitos",
     body: "Varmistamme, että opiskelijoiden ääni kuuluu laitoksella. Käymme säännöllistä vuoropuhelua ja välitämme palautetta suoraan sinne, missä opintoja kehitetään.",
-    image: "/photos/toiminta-laitos.jpg",
+    image: assetPath("/photos/toiminta-laitos.jpg"),
     imageAlt: "Opiskelijoita luentosalissa esityksen aikana.",
   },
   {
     title: "Yritysyhteistyö­kumppanit",
     body: "Jaamme työpaikkailmoituksia ja muuta ajankohtaista sähköpostilistoillamme ja sosiaalisessa mediassa. Järjestämme lisäksi yritystapahtumia, joissa opiskelijat ja työnantajat kohtaavat.",
-    image: "/photos/toiminta-yritykset.jpg",
+    image: assetPath("/photos/toiminta-yritykset.jpg"),
     imageAlt: "Paneelikeskustelu Aktiivan yritystapahtumassa.",
   },
   {
     title: "Alumnit",
     body: "Tuomme alumneja mukaan tapahtumiimme ja tarjoamme opiskelijoille mahdollisuuden oppia heidän kokemuksistaan ja urapoluistaan.",
-    image: "/photos/toiminta-alumnit.jpg",
+    image: assetPath("/photos/toiminta-alumnit.jpg"),
     imageAlt: "Aktiivan jäseniä iltatapahtumassa.",
   },
 ];
