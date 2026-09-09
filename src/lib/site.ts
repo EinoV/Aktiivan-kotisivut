@@ -9,7 +9,7 @@
  * right.
  */
 export const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://aktiiva.fi"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://aktiivary.fi"
 ).replace(/\/$/, "");
 
 export const siteName = "Aktiiva ry";
@@ -17,7 +17,7 @@ export const siteName = "Aktiiva ry";
 export const siteDescription =
   "Aktiiva ry on Turun kauppakorkeakoulun laskentatoimen, rahoituksen ja yritysjuridiikan opiskelijoiden ainejärjestö.";
 
-export const assetPath = (path: string) => `/Aktiivan-kotisivut${path}`;
+export const assetPath = (path: string) => path;
 
 /** The shared social card. Kept here so the subpages, which have to
  *  restate it (a page-level openGraph replaces the inherited one rather
