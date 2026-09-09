@@ -1,4 +1,4 @@
 User-Agent: *
 Allow: /
 
-Sitemap: https://aktiiva.fi/sitemap.xml
+Sitemap: https://aktiivary.fi/sitemap.xml
