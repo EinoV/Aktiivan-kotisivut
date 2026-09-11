@@ -2,7 +2,7 @@
   "name": "aktiiva-website",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://aktiiva.github.io/Aktiivan-kotisivut",
+  "homepage": "aktiivary.fi",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

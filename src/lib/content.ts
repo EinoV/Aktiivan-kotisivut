@@ -117,7 +117,7 @@ export const partners: Partner[] = [
 // and `linkedin` directly as text, and reshaping them would break those
 // for no benefit. Only the live site links them.
 export const contact = {
-  email: "hallitus@aktiiva.fi",
+  email: "hallitus@aktiivary.fi",
   instagram: "@aktiiva",
   instagramUrl: "https://www.instagram.com/aktiiva/",
   linkedin: "Aktiiva ry",
